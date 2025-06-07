@@ -7,6 +7,7 @@ const ArmorSection = ({ data, onChange }) => (
     <InputField
       label="AC"
       name="ac"
+      type="number"
       value={data.ac}
       onChange={onChange}
     />
@@ -15,6 +16,7 @@ const ArmorSection = ({ data, onChange }) => (
       name="armorType"
       value={data.armorType}
       onChange={onChange}
+      placeholder="e.g. natural armor"
     />
   </FieldGroup>
 );
