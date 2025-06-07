@@ -10,6 +10,7 @@ import SensesSection from './SensesSection';
 import LanguagesSection from './LanguagesSection';
 import ChallengeSection from './ChallengeSection';
 import TraitsSection from './TraitsSection';
+import ActionsSection from './ActionsSection';
 
 const MonsterForm = () => {
   const [formData, setFormData] = useState({
@@ -44,6 +45,7 @@ const MonsterForm = () => {
     challengeRating: '',
     xp: '',
     traits: [],
+    actions: [],
   });
 
   const handleChange = (e) => {
@@ -54,6 +56,11 @@ const MonsterForm = () => {
   // Handler for updating traits array
   const handleTraitsChange = (newTraits) => {
     setFormData(prev => ({ ...prev, traits: newTraits }));
+  };
+
+  // Handler for updating actions array
+  const handleActionsChange = (newActions) => {
+    setFormData(prev => ({ ...prev, actions: newActions }));
   };
 
   return (
@@ -69,6 +76,7 @@ const MonsterForm = () => {
       <LanguagesSection data={formData} onChange={handleChange} />
       <ChallengeSection data={formData} onChange={handleChange} />
       <TraitsSection traits={formData.traits} onTraitsChange={handleTraitsChange} />
+      <ActionsSection actions={formData.actions} onActionsChange={handleActionsChange} />
     </form>
   );
 };
