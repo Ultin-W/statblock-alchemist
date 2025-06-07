@@ -10,6 +10,7 @@ const HitPointsSection = ({ data, onChange }) => (
       type="number"
       value={data.hp}
       onChange={onChange}
+      placeholder="e.g. 100"
     />
     <InputField
       label="Hit Dice"

@@ -10,6 +10,7 @@ const ArmorSection = ({ data, onChange }) => (
       type="number"
       value={data.ac}
       onChange={onChange}
+      placeholder="e.g. 10"
     />
     <InputField
       label="Type"
