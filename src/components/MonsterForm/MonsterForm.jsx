@@ -13,6 +13,8 @@ import TraitsSection from './TraitsSection';
 import ActionsSection from './ActionsSection';
 import ReactionsSection from './ReactionsSection';
 import LegendaryActionsSection from './LegendaryActionsSection';
+import LairActionsSection from './LairActionsSection';
+import RegionalEffectsSection from './RegionalEffectsSection';
 
 const MonsterForm = () => {
   const [formData, setFormData] = useState({
@@ -50,6 +52,8 @@ const MonsterForm = () => {
     actions: [],
     reactions: [],
     legendaryActions: [],
+    lairActions: [],
+    regionalEffects: [],
   });
 
   const handleChange = (e) => {
@@ -77,6 +81,16 @@ const MonsterForm = () => {
     setFormData(prev => ({ ...prev, legendaryActions: newLegendaryActions }));
   };
 
+  // Handler for updating lair actions array
+  const handleLairActionsChange = (newLairActions) => {
+    setFormData(prev => ({ ...prev, lairActions: newLairActions }));
+  };
+
+  // Handler for updating regional effects array
+  const handleRegionalEffectsChange = (newRegionalEffects) => {
+    setFormData(prev => ({ ...prev, regionalEffects: newRegionalEffects }));
+  };
+
   return (
     <form className="monster-form">
       <BasicInfoSection data={formData} onChange={handleChange} />
@@ -93,6 +107,8 @@ const MonsterForm = () => {
       <ActionsSection actions={formData.actions} onActionsChange={handleActionsChange} />
       <ReactionsSection reactions={formData.reactions} onReactionsChange={handleReactionsChange} />
       <LegendaryActionsSection legendaryActions={formData.legendaryActions} onLegendaryActionsChange={handleLegendaryActionsChange} />
+      <LairActionsSection lairActions={formData.lairActions} onLairActionsChange={handleLairActionsChange} />
+      <RegionalEffectsSection regionalEffects={formData.regionalEffects} onRegionalEffectsChange={handleRegionalEffectsChange} />
     </form>
   );
 };
