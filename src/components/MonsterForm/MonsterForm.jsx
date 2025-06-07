@@ -5,6 +5,7 @@ import HitPointsSection from './HitPointsSection';
 import SpeedSection from './SpeedSection';
 import AbilityScoresSection from './AbilityScoresSection';
 import SavingThrowsSkillsSection from './SavingThrowsSkillsSection';
+import ResistancesImmunitiesSection from './ResistancesImmunitiesSection';
 
 const MonsterForm = () => {
   const [formData, setFormData] = useState({
@@ -30,6 +31,10 @@ const MonsterForm = () => {
     cha: 10,
     savingThrows: '',
     skills: '',
+    damageVulnerabilities: '',
+    damageResistances: '',
+    damageImmunities: '',
+    conditionImmunities: '',
   });
 
   const handleChange = (e) => {
@@ -45,6 +50,7 @@ const MonsterForm = () => {
       <SpeedSection data={formData} onChange={handleChange} />
       <AbilityScoresSection data={formData} onChange={handleChange} />
       <SavingThrowsSkillsSection data={formData} onChange={handleChange} />
+      <ResistancesImmunitiesSection data={formData} onChange={handleChange} />
     </form>
   );
 };
