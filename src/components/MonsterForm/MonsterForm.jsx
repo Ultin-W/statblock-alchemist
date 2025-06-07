@@ -5,6 +5,7 @@ import FieldGroup from '../FieldGroup/FieldGroup';
 const MonsterForm = () => {
   const [formData, setFormData] = useState({
     name: '',
+    tag: '',
     type: '',
     size: '',
     alignment: '',
@@ -17,7 +18,7 @@ const MonsterForm = () => {
 
   return (
     <form className="monster-form">
-      <FieldGroup title="Basic Information">
+      <FieldGroup title="Basic Description">
         <InputField
           label="Name"
           name="name"
@@ -25,15 +26,21 @@ const MonsterForm = () => {
           onChange={handleChange}
         />
         <InputField
-          label="Type"
-          name="type"
-          value={formData.type}
+          label="Tag"
+          name="tag"
+          value={formData.tag}
           onChange={handleChange}
         />
         <InputField
           label="Size"
           name="size"
           value={formData.size}
+          onChange={handleChange}
+        />
+        <InputField
+          label="Type"
+          name="type"
+          value={formData.type}
           onChange={handleChange}
         />
         <InputField
