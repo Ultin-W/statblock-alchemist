@@ -5,7 +5,7 @@ import FieldGroup from '../FieldGroup/FieldGroup';
 const HitPointsSection = ({ data, onChange }) => (
   <FieldGroup title="Hit Points" defaultExpanded={true}>
     <InputField
-      label="HP"
+      label="Average Hit Points"
       name="hp"
       type="number"
       value={data.hp}
