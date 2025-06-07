@@ -18,8 +18,8 @@ const BasicInfoSection = ({ data, onChange }) => (
     />
     <InputField
       label="Type"
-      name="type"
-      value={data.type}
+      name="creatureType"
+      value={data.creatureType}
       onChange={onChange}
     />
     <InputField

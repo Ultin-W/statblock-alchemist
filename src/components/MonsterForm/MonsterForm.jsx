@@ -6,9 +6,11 @@ const MonsterForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     tag: '',
-    type: '',
+    creatureType: '',
     size: '',
     alignment: '',
+    ac: '',
+    armorType: '',
   });
 
   const handleChange = (e) => {

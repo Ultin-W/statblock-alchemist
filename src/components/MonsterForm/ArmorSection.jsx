@@ -12,8 +12,8 @@ const ArmorSection = ({ data, onChange }) => (
     />
     <InputField
       label="Type"
-      name="type"
-      value={data.type}
+      name="armorType"
+      value={data.armorType}
       onChange={onChange}
     />
   </FieldGroup>
