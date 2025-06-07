@@ -3,7 +3,7 @@ import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
 const SpeedSection = ({ data, onChange }) => (
-  <FieldGroup title="Speed" defaultExpanded={true}>
+  <FieldGroup title="Speed" defaultExpanded={false}>
     <InputField
       label="Walk Speed (ft.)"
       name="walkSpeed"

@@ -3,7 +3,7 @@ import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
 const ArmorSection = ({ data, onChange }) => (
-  <FieldGroup title="Armor" defaultExpanded={true}>
+  <FieldGroup title="Armor" defaultExpanded={false}>
     <InputField
       label="AC"
       name="ac"

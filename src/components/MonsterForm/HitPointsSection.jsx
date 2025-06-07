@@ -3,7 +3,7 @@ import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
 const HitPointsSection = ({ data, onChange }) => (
-  <FieldGroup title="Hit Points" defaultExpanded={true}>
+  <FieldGroup title="Hit Points" defaultExpanded={false}>
     <InputField
       label="Average Hit Points"
       name="hp"

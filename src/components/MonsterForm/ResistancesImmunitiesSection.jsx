@@ -3,7 +3,7 @@ import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
 const ResistancesImmunitiesSection = ({ data, onChange }) => (
-  <FieldGroup title="Vulnerabilities, Resistances & Immunities" defaultExpanded={true}>
+  <FieldGroup title="Vulnerabilities, Resistances & Immunities" defaultExpanded={false}>
     <InputField
       label="Damage Vulnerabilities"
       name="damageVulnerabilities"

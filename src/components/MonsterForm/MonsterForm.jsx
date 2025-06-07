@@ -6,6 +6,10 @@ import SpeedSection from './SpeedSection';
 import AbilityScoresSection from './AbilityScoresSection';
 import SavingThrowsSkillsSection from './SavingThrowsSkillsSection';
 import ResistancesImmunitiesSection from './ResistancesImmunitiesSection';
+import SensesSection from './SensesSection';
+import LanguagesSection from './LanguagesSection';
+import ChallengeSection from './ChallengeSection';
+import TraitsSection from './TraitsSection';
 
 const MonsterForm = () => {
   const [formData, setFormData] = useState({
@@ -35,11 +39,21 @@ const MonsterForm = () => {
     damageResistances: '',
     damageImmunities: '',
     conditionImmunities: '',
+    senses: '',
+    languages: '',
+    challengeRating: '',
+    xp: '',
+    traits: [],
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Handler for updating traits array
+  const handleTraitsChange = (newTraits) => {
+    setFormData(prev => ({ ...prev, traits: newTraits }));
   };
 
   return (
@@ -51,6 +65,10 @@ const MonsterForm = () => {
       <AbilityScoresSection data={formData} onChange={handleChange} />
       <SavingThrowsSkillsSection data={formData} onChange={handleChange} />
       <ResistancesImmunitiesSection data={formData} onChange={handleChange} />
+      <SensesSection data={formData} onChange={handleChange} />
+      <LanguagesSection data={formData} onChange={handleChange} />
+      <ChallengeSection data={formData} onChange={handleChange} />
+      <TraitsSection traits={formData.traits} onTraitsChange={handleTraitsChange} />
     </form>
   );
 };

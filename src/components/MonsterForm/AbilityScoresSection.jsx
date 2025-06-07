@@ -3,7 +3,7 @@ import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
 const AbilityScoresSection = ({ data, onChange }) => (
-  <FieldGroup title="Ability Scores" defaultExpanded={true}>
+  <FieldGroup title="Ability Scores" defaultExpanded={false}>
     <InputField
       label="STR"
       name="str"

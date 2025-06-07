@@ -3,7 +3,7 @@ import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
 const SavingThrowsSkillsSection = ({ data, onChange }) => (
-  <FieldGroup title="Saving Throws & Skills" defaultExpanded={true}>
+  <FieldGroup title="Saving Throws & Skills" defaultExpanded={false}>
     <InputField
       label="Saving Throws"
       name="savingThrows"
