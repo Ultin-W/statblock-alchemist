@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BasicInfoSection from './BasicInfoSection';
 import ArmorSection from './ArmorSection';
+import HitPointsSection from './HitPointsSection';
 
 const MonsterForm = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const MonsterForm = () => {
     alignment: '',
     ac: '',
     armorType: '',
+    hp: '',
+    hitDice: '',
   });
 
   const handleChange = (e) => {
@@ -22,6 +25,7 @@ const MonsterForm = () => {
     <form className="monster-form">
       <BasicInfoSection data={formData} onChange={handleChange} />
       <ArmorSection data={formData} onChange={handleChange} />
+      <HitPointsSection data={formData} onChange={handleChange} />
     </form>
   );
 };
