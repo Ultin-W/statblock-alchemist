@@ -6,7 +6,7 @@ const ReactionsSection = ({ reactions, onReactionsChange }) => (
     title="Reactions"
     items={reactions}
     onItemsChange={onReactionsChange}
-    nameLabel="Reaction Name"
+    nameLabel="Reaction"
     namePlaceholder="e.g. Parry"
     descLabel="Description"
     descPlaceholder="e.g. The monster adds 2 to its AC against one melee attack that would hit it."

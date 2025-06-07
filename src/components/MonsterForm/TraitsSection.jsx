@@ -6,7 +6,7 @@ const TraitsSection = ({ traits, onTraitsChange }) => (
     title="Special Traits / Abilities"
     items={traits}
     onItemsChange={onTraitsChange}
-    nameLabel="Trait Name"
+    nameLabel="Trait"
     namePlaceholder="e.g. Keen Smell"
     descLabel="Description"
     descPlaceholder="e.g. The monster has advantage on Wisdom (Perception) checks that rely on smell."

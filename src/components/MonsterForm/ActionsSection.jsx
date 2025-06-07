@@ -6,7 +6,7 @@ const ActionsSection = ({ actions, onActionsChange }) => (
     title="Actions"
     items={actions}
     onItemsChange={onActionsChange}
-    nameLabel="Action Name"
+    nameLabel="Action"
     namePlaceholder="e.g. Multiattack"
     descLabel="Description"
     descPlaceholder="e.g. The monster makes two attacks with its claws."
