@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './FieldGroup.scss';
 
-const FieldGroup = ({ title, children }) => {
-  const [expanded, setExpanded] = useState(true);
+const FieldGroup = ({ title, children, defaultExpanded = false }) => {
+  const [expanded, setExpanded] = useState(defaultExpanded);
 
   const toggle = () => setExpanded(prev => !prev);
 

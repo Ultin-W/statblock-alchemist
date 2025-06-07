@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import InputField from '../InputField/InputField';
-import FieldGroup from '../FieldGroup/FieldGroup';
+import BasicInfoSection from './BasicInfoSection';
+import ArmorSection from './ArmorSection';
 
 const MonsterForm = () => {
   const [formData, setFormData] = useState({
@@ -18,38 +18,8 @@ const MonsterForm = () => {
 
   return (
     <form className="monster-form">
-      <FieldGroup title="Basic Description">
-        <InputField
-          label="Name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        <InputField
-          label="Tag"
-          name="tag"
-          value={formData.tag}
-          onChange={handleChange}
-        />
-        <InputField
-          label="Size"
-          name="size"
-          value={formData.size}
-          onChange={handleChange}
-        />
-        <InputField
-          label="Type"
-          name="type"
-          value={formData.type}
-          onChange={handleChange}
-        />
-        <InputField
-          label="Alignment"
-          name="alignment"
-          value={formData.alignment}
-          onChange={handleChange}
-        />
-      </FieldGroup>
+      <BasicInfoSection data={formData} onChange={handleChange} />
+      <ArmorSection data={formData} onChange={handleChange} />
     </form>
   );
 };

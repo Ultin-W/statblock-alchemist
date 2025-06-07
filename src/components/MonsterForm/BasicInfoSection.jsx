@@ -1,0 +1,40 @@
+import React from 'react';
+import InputField from '../InputField/InputField';
+import FieldGroup from '../FieldGroup/FieldGroup';
+
+const BasicInfoSection = ({ data, onChange }) => (
+  <FieldGroup title="Basic Information" defaultExpanded={true}>
+    <InputField
+      label="Name"
+      name="name"
+      value={data.name}
+      onChange={onChange}
+    />
+    <InputField
+      label="Tag"
+      name="tag"
+      value={data.tag}
+      onChange={onChange}
+    />
+    <InputField
+      label="Type"
+      name="type"
+      value={data.type}
+      onChange={onChange}
+    />
+    <InputField
+      label="Size"
+      name="size"
+      value={data.size}
+      onChange={onChange}
+    />
+    <InputField
+      label="Alignment"
+      name="alignment"
+      value={data.alignment}
+      onChange={onChange}
+    />
+  </FieldGroup>
+);
+
+export default BasicInfoSection;
