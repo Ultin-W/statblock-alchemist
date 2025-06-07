@@ -18,7 +18,7 @@ const AbilityScoresSection = ({ data, onChange }) => (
       type="number"
       value={data.dex}
       onChange={onChange}
-      placeholder="e.g. 14"
+      placeholder="e.g. 10"
     />
     <InputField
       label="CON"
@@ -26,7 +26,7 @@ const AbilityScoresSection = ({ data, onChange }) => (
       type="number"
       value={data.con}
       onChange={onChange}
-      placeholder="e.g. 12"
+      placeholder="e.g. 10"
     />
     <InputField
       label="INT"
@@ -34,7 +34,7 @@ const AbilityScoresSection = ({ data, onChange }) => (
       type="number"
       value={data.int}
       onChange={onChange}
-      placeholder="e.g. 8"
+      placeholder="e.g. 10"
     />
     <InputField
       label="WIS"
@@ -42,7 +42,7 @@ const AbilityScoresSection = ({ data, onChange }) => (
       type="number"
       value={data.wis}
       onChange={onChange}
-      placeholder="e.g. 11"
+      placeholder="e.g. 10"
     />
     <InputField
       label="CHA"
@@ -50,7 +50,7 @@ const AbilityScoresSection = ({ data, onChange }) => (
       type="number"
       value={data.cha}
       onChange={onChange}
-      placeholder="e.g. 9"
+      placeholder="e.g. 10"
     />
   </FieldGroup>
 );
