@@ -67,6 +67,7 @@ const StatBlock = ({ monsterData }) => {
 
       <div className="stat-block-section">
         <p><strong>Challenge</strong> {monsterData.challengeRating} ({monsterData.xp} XP)</p>
+        <p><strong>Languages</strong> {formatLanguages(monsterData.languages)}</p>
       </div>
     </div>
   );

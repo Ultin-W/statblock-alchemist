@@ -46,8 +46,8 @@ function App() {
     conditionImmunities: [],
 
     // Senses & Languages
-    senses: '',
-    languages: '',
+    senses: [],
+    languages: [],
 
     // Challenge Rating
     challengeRating: '',
@@ -76,9 +76,9 @@ function App() {
         <div className="form-section">
           <MonsterForm formData={formData} onFormDataChange={handleFormDataChange} />
         </div>
-        <div className="statblock-section">
+        {/* <div className="statblock-section">
           <StatBlock monsterData={formData} />
-        </div>
+        </div> */}
       </main>
     </div>
   );
