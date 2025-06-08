@@ -1,5 +1,5 @@
 import React from 'react';
-import DynamicListSection from './DynamicListSection';
+import DynamicListSection from '../DynamicListSection/DynamicListSection';
 
 const ActionsSection = ({ actions, onActionsChange }) => (
   <DynamicListSection

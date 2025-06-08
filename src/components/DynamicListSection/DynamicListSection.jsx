@@ -1,6 +1,7 @@
 import React from 'react';
 import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
+import './DynamicListSection.scss';
 
 const DynamicListSection = ({
   title,
@@ -31,7 +32,7 @@ const DynamicListSection = ({
   return (
     <FieldGroup title={title} defaultExpanded={defaultExpanded}>
       {items.map((item, idx) => (
-        <div key={idx} style={{ marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '1rem' }}>
+        <div key={idx} className="dynamic-list-item">
           <InputField
             label={nameLabel}
             name={`item-name-${idx}`}
@@ -48,10 +49,9 @@ const DynamicListSection = ({
               onChange={e => handleItemChange(idx, 'description', e.target.value)}
               placeholder={descPlaceholder}
               rows={3}
-              style={{ width: '100%', padding: '0.5rem', borderRadius: '0.4rem', border: '1px solid #ccc', fontSize: '1rem' }}
             />
           </div>
-          <button type="button" onClick={() => handleRemoveItem(idx)} style={{ marginTop: '0.5rem' }}>
+          <button type="button" onClick={() => handleRemoveItem(idx)}>
             Remove
           </button>
         </div>
