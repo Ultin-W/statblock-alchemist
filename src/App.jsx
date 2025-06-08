@@ -6,11 +6,13 @@ import './App.scss';
 function App() {
   const [formData, setFormData] = useState({
     // Basic Information
-    name: '',
-    tag: '',
-    creatureType: '',
-    size: '',
-    alignment: '',
+    basicInfo: {
+      name: '',
+      tag: '',
+      creatureType: '',
+      size: '',
+      alignment: ''
+    },
 
     // Armor & Hit Points
     ac: '',
@@ -18,7 +20,7 @@ function App() {
     hp: '',
     hitDice: '',
 
-    // Speed (restructured as an object)
+    // Speed
     speed: {
       walk: '',
       fly: '',
@@ -28,22 +30,28 @@ function App() {
     },
 
     // Ability Scores
-    str: 10,
-    dex: 10,
-    con: 10,
-    int: 10,
-    wis: 10,
-    cha: 10,
+    abilityScores: {
+      str: 10,
+      dex: 10,
+      con: 10,
+      int: 10,
+      wis: 10,
+      cha: 10
+    },
 
-    // Saving Throws & Skills (restructured as arrays of objects)
-    savingThrows: [],
-    skills: [],
+    // Proficiencies
+    proficiencies: {
+      savingThrows: [],
+      skills: []
+    },
 
-    // Damage Types (restructured as arrays)
-    damageVulnerabilities: [],
-    damageResistances: [],
-    damageImmunities: [],
-    conditionImmunities: [],
+    // Resistances & Immunities
+    resistances: {
+      vulnerabilities: [],
+      resistances: [],
+      immunities: [],
+      conditionImmunities: []
+    },
 
     // Senses & Languages
     senses: [],
@@ -53,7 +61,7 @@ function App() {
     challengeRating: '',
     xp: '',
 
-    // Dynamic Lists
+    // Features
     traits: [],
     actions: [],
     reactions: [],

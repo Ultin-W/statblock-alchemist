@@ -6,8 +6,11 @@ const SavingThrowsSkillsSection = ({ data, onChange }) => {
   const handleSavingThrowsChange = (newSavingThrows) => {
     onChange({
       target: {
-        name: 'savingThrows',
-        value: newSavingThrows
+        name: 'proficiencies',
+        value: {
+          ...data.proficiencies,
+          savingThrows: newSavingThrows
+        }
       }
     });
   };
@@ -15,8 +18,11 @@ const SavingThrowsSkillsSection = ({ data, onChange }) => {
   const handleSkillsChange = (newSkills) => {
     onChange({
       target: {
-        name: 'skills',
-        value: newSkills
+        name: 'proficiencies',
+        value: {
+          ...data.proficiencies,
+          skills: newSkills
+        }
       }
     });
   };
@@ -25,7 +31,7 @@ const SavingThrowsSkillsSection = ({ data, onChange }) => {
     <FieldGroup title="Saving Throws & Skills" defaultExpanded={false}>
       <DynamicListSection
         title="Saving Throws"
-        items={data.savingThrows}
+        items={data.proficiencies.savingThrows}
         onItemsChange={handleSavingThrowsChange}
         nameLabel="Ability"
         namePlaceholder="e.g. STR"
@@ -36,7 +42,7 @@ const SavingThrowsSkillsSection = ({ data, onChange }) => {
       />
       <DynamicListSection
         title="Skills"
-        items={data.skills}
+        items={data.proficiencies.skills}
         onItemsChange={handleSkillsChange}
         nameLabel="Skill"
         namePlaceholder="e.g. Perception"

@@ -24,7 +24,7 @@ const LanguagesSection = ({ data, onChange }) => {
       nameLabel="Language"
       namePlaceholder="e.g. Common"
       singleField={true}
-      defaultExpanded={true}
+      defaultExpanded={false}
     />
   );
 };

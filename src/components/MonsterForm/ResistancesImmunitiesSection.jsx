@@ -6,8 +6,11 @@ const ResistancesImmunitiesSection = ({ data, onChange }) => {
   const handleArrayChange = (field, newItems) => {
     onChange({
       target: {
-        name: field,
-        value: newItems.map(item => item.name)
+        name: 'resistances',
+        value: {
+          ...data.resistances,
+          [field]: newItems.map(item => item.name)
+        }
       }
     });
   };
@@ -21,8 +24,8 @@ const ResistancesImmunitiesSection = ({ data, onChange }) => {
     <FieldGroup title="Vulnerabilities, Resistances & Immunities" defaultExpanded={false}>
       <DynamicListSection
         title="Damage Vulnerabilities"
-        items={convertToItems(data.damageVulnerabilities)}
-        onItemsChange={(items) => handleArrayChange('damageVulnerabilities', items)}
+        items={convertToItems(data.resistances.vulnerabilities)}
+        onItemsChange={(items) => handleArrayChange('vulnerabilities', items)}
         nameLabel="Vulnerability"
         namePlaceholder="e.g. radiant"
         singleField={true}
@@ -30,8 +33,8 @@ const ResistancesImmunitiesSection = ({ data, onChange }) => {
       />
       <DynamicListSection
         title="Damage Resistances"
-        items={convertToItems(data.damageResistances)}
-        onItemsChange={(items) => handleArrayChange('damageResistances', items)}
+        items={convertToItems(data.resistances.resistances)}
+        onItemsChange={(items) => handleArrayChange('resistances', items)}
         nameLabel="Resistance"
         namePlaceholder="e.g. cold"
         singleField={true}
@@ -39,8 +42,8 @@ const ResistancesImmunitiesSection = ({ data, onChange }) => {
       />
       <DynamicListSection
         title="Damage Immunities"
-        items={convertToItems(data.damageImmunities)}
-        onItemsChange={(items) => handleArrayChange('damageImmunities', items)}
+        items={convertToItems(data.resistances.immunities)}
+        onItemsChange={(items) => handleArrayChange('immunities', items)}
         nameLabel="Immunity"
         namePlaceholder="e.g. poison"
         singleField={true}
@@ -48,7 +51,7 @@ const ResistancesImmunitiesSection = ({ data, onChange }) => {
       />
       <DynamicListSection
         title="Condition Immunities"
-        items={convertToItems(data.conditionImmunities)}
+        items={convertToItems(data.resistances.conditionImmunities)}
         onItemsChange={(items) => handleArrayChange('conditionImmunities', items)}
         nameLabel="Condition Immunity"
         namePlaceholder="e.g. charmed"

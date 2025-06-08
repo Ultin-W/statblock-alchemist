@@ -32,7 +32,7 @@ const SensesSection = ({ data, onChange }) => {
       namePlaceholder="e.g. darkvision"
       descLabel="Range/Details"
       descPlaceholder="e.g. 60 ft."
-      defaultExpanded={true}
+      defaultExpanded={false}
       type="input"
     />
   );
