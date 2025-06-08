@@ -32,6 +32,7 @@ const SavingThrowsSkillsSection = ({ data, onChange }) => {
         descLabel="Bonus"
         descPlaceholder="e.g. +3"
         defaultExpanded={true}
+        type="input"
       />
       <DynamicListSection
         title="Skills"
@@ -42,6 +43,7 @@ const SavingThrowsSkillsSection = ({ data, onChange }) => {
         descLabel="Bonus"
         descPlaceholder="e.g. +4"
         defaultExpanded={true}
+        type="input"
       />
     </FieldGroup>
   );

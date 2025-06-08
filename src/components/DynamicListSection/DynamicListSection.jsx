@@ -12,6 +12,7 @@ const DynamicListSection = ({
   descLabel = 'Description',
   descPlaceholder = '',
   defaultExpanded = false,
+  type = 'textarea' // 'textarea' or 'input'
 }) => {
   const handleItemChange = (index, field, value) => {
     const updatedItems = items.map((item, i) =>
@@ -45,14 +46,25 @@ const DynamicListSection = ({
           />
           <div className="input-field">
             <label htmlFor={`${sectionId}-desc-${idx}`}>{descLabel}</label>
-            <textarea
-              id={`${sectionId}-desc-${idx}`}
-              name={`${sectionId}-desc-${idx}`}
-              value={item.description}
-              onChange={e => handleItemChange(idx, 'description', e.target.value)}
-              placeholder={descPlaceholder}
-              rows={3}
-            />
+            {type === 'textarea' ? (
+              <textarea
+                id={`${sectionId}-desc-${idx}`}
+                name={`${sectionId}-desc-${idx}`}
+                value={item.description}
+                onChange={e => handleItemChange(idx, 'description', e.target.value)}
+                placeholder={descPlaceholder}
+                rows={3}
+              />
+            ) : (
+              <input
+                type="text"
+                id={`${sectionId}-desc-${idx}`}
+                name={`${sectionId}-desc-${idx}`}
+                value={item.description}
+                onChange={e => handleItemChange(idx, 'description', e.target.value)}
+                placeholder={descPlaceholder}
+              />
+            )}
           </div>
           <button type="button" onClick={() => handleRemoveItem(idx)} className="remove-button">
             -
