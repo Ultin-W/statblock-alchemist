@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import BasicInfoSection from './BasicInfoSection';
 import ArmorSection from './ArmorSection';
 import HitPointsSection from './HitPointsSection';
@@ -15,80 +15,42 @@ import ReactionsSection from './ReactionsSection';
 import LegendaryActionsSection from './LegendaryActionsSection';
 import LairActionsSection from './LairActionsSection';
 import RegionalEffectsSection from './RegionalEffectsSection';
+import './MonsterForm.scss';
 
-const MonsterForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    tag: '',
-    creatureType: '',
-    size: '',
-    alignment: '',
-    ac: '',
-    armorType: '',
-    hp: '',
-    hitDice: '',
-    walkSpeed: '',
-    flySpeed: '',
-    swimSpeed: '',
-    climbSpeed: '',
-    burrowSpeed: '',
-    str: 10,
-    dex: 10,
-    con: 10,
-    int: 10,
-    wis: 10,
-    cha: 10,
-    savingThrows: '',
-    skills: '',
-    damageVulnerabilities: '',
-    damageResistances: '',
-    damageImmunities: '',
-    conditionImmunities: '',
-    senses: '',
-    languages: '',
-    challengeRating: '',
-    xp: '',
-    traits: [],
-    actions: [],
-    reactions: [],
-    legendaryActions: [],
-    lairActions: [],
-    regionalEffects: [],
-  });
-
+const MonsterForm = ({ formData, onFormDataChange }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    onFormDataChange({ ...formData, [name]: value });
   };
 
   // Handler for updating traits array
   const handleTraitsChange = (newTraits) => {
-    setFormData(prev => ({ ...prev, traits: newTraits }));
+    onFormDataChange({ ...formData, traits: newTraits });
   };
 
   // Handler for updating actions array
   const handleActionsChange = (newActions) => {
-    setFormData(prev => ({ ...prev, actions: newActions }));
+    onFormDataChange({ ...formData, actions: newActions });
   };
 
   // Handler for updating reactions array
   const handleReactionsChange = (newReactions) => {
-    setFormData(prev => ({ ...prev, reactions: newReactions }));
+    onFormDataChange({ ...formData, reactions: newReactions });
   };
 
   // Handler for updating legendary actions array
   const handleLegendaryActionsChange = (newLegendaryActions) => {
-    setFormData(prev => ({ ...prev, legendaryActions: newLegendaryActions }));
+    onFormDataChange({ ...formData, legendaryActions: newLegendaryActions });
   };
 
   // Handler for updating lair actions array
   const handleLairActionsChange = (newLairActions) => {
-    setFormData(prev => ({ ...prev, lairActions: newLairActions }));
+    onFormDataChange({ ...formData, lairActions: newLairActions });
   };
 
   // Handler for updating regional effects array
   const handleRegionalEffectsChange = (newRegionalEffects) => {
-    setFormData(prev => ({ ...prev, regionalEffects: newRegionalEffects }));
+    onFormDataChange({ ...formData, regionalEffects: newRegionalEffects });
   };
 
   return (

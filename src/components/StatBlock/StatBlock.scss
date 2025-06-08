@@ -1,0 +1,57 @@
+.stat-block {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .stat-block-header {
+    text-align: center;
+    margin-bottom: 1rem;
+
+    h2 {
+      font-size: 2rem;
+      margin: 0;
+      color: #2c3e50;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.9rem;
+      color: #666;
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .stat-block-subheader {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+
+  .stat-block-divider {
+    height: 2px;
+    background: #2c3e50;
+    margin: 1rem 0;
+  }
+
+  .stat-block-section {
+    p {
+      margin: 0.5rem 0;
+      line-height: 1.4;
+    }
+
+    strong {
+      color: #2c3e50;
+    }
+  }
+
+  .stat-block-abilities {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
