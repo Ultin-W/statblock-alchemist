@@ -51,13 +51,13 @@ const DynamicListSection = ({
               rows={3}
             />
           </div>
-          <button type="button" onClick={() => handleRemoveItem(idx)}>
-            Remove
+          <button type="button" onClick={() => handleRemoveItem(idx)} className="remove-button">
+            -
           </button>
         </div>
       ))}
-      <button type="button" onClick={handleAddItem}>
-        Add {nameLabel}
+      <button type="button" onClick={handleAddItem} className="add-button">
+        +
       </button>
     </FieldGroup>
   );
