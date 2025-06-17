@@ -1,35 +1,38 @@
 import React from 'react';
-import DynamicListSection from '../DynamicListSection/DynamicListSection';
+import { useFieldArray } from 'react-hook-form';
+import InputField from '../InputField/InputField';
+import FieldGroup from '../FieldGroup/FieldGroup';
 
-const SensesSection = ({ senses, onSensesChange }) => {
-  const handleArrayChange = (newItems) => {
-    onSensesChange(newItems.map(item => `${item.name} ${item.description}`.trim()));
-  };
+const SensesSection = ({ control }) => {
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "senses"
+  });
 
-  // Convert array to the format expected by DynamicListSection
-  const convertToItems = (arr) => {
-    if (!arr) return [];
-    return arr.map(sense => {
-      const [name, ...descParts] = sense.split(' ');
-      return {
-        name: name || '',
-        description: descParts.join(' ') || ''
-      };
-    });
+  const addSense = () => {
+    append("");
   };
 
   return (
-    <DynamicListSection
-      title="Senses"
-      items={convertToItems(senses)}
-      onItemsChange={handleArrayChange}
-      nameLabel="Sense"
-      namePlaceholder="e.g. darkvision"
-      descLabel="Range/Details"
-      descPlaceholder="e.g. 60 ft."
-      defaultExpanded={false}
-      type="input"
-    />
+    <FieldGroup title="Senses" defaultExpanded={false}>
+      {fields.map((field, index) => (
+        <div key={field.id}>
+          <InputField
+            label="Sense"
+            name={`senses.${index}`}
+            {...control.register(`senses.${index}`)}
+            placeholder="e.g. darkvision 60 ft."
+          />
+          <button type="button" onClick={() => remove(index)}>
+            Remove Sense
+          </button>
+        </div>
+      ))}
+
+      <button type="button" onClick={addSense}>
+        Add Sense
+      </button>
+    </FieldGroup>
   );
 };
 

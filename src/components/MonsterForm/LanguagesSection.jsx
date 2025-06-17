@@ -1,26 +1,38 @@
 import React from 'react';
-import DynamicListSection from '../DynamicListSection/DynamicListSection';
+import { useFieldArray } from 'react-hook-form';
+import InputField from '../InputField/InputField';
+import FieldGroup from '../FieldGroup/FieldGroup';
 
-const LanguagesSection = ({ languages, onLanguagesChange }) => {
-  const handleArrayChange = (newItems) => {
-    onLanguagesChange(newItems.map(item => item.name));
-  };
+const LanguagesSection = ({ control }) => {
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "languages"
+  });
 
-  // Convert array to the format expected by DynamicListSection
-  const convertToItems = (arr) => {
-    return arr.map(item => ({ name: item, description: '' }));
+  const addLanguage = () => {
+    append("");
   };
 
   return (
-    <DynamicListSection
-      title="Languages"
-      items={convertToItems(languages)}
-      onItemsChange={handleArrayChange}
-      nameLabel="Language"
-      namePlaceholder="e.g. Common"
-      singleField={true}
-      defaultExpanded={false}
-    />
+    <FieldGroup title="Languages" defaultExpanded={false}>
+      {fields.map((field, index) => (
+        <div key={field.id}>
+          <InputField
+            label="Language"
+            name={`languages.${index}`}
+            {...control.register(`languages.${index}`)}
+            placeholder="e.g. Common"
+          />
+          <button type="button" onClick={() => remove(index)}>
+            Remove Language
+          </button>
+        </div>
+      ))}
+
+      <button type="button" onClick={addLanguage}>
+        Add Language
+      </button>
+    </FieldGroup>
   );
 };
 

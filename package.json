@@ -13,6 +13,7 @@
     "@pollinations/react": "^2.0.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.58.0",
     "sass": "^1.89.0"
   },
   "devDependencies": {

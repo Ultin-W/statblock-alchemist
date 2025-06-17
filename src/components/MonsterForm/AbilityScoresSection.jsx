@@ -2,63 +2,49 @@ import React from 'react';
 import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const AbilityScoresSection = ({ abilityScores, onAbilityScoresChange }) => {
-  const handleAbilityScoreChange = (e) => {
-    const { name, value } = e.target;
-    onAbilityScoresChange({
-      ...abilityScores,
-      [name]: parseInt(value) || 10
-    });
-  };
-
+const AbilityScoresSection = ({ register }) => {
   return (
     <FieldGroup title="Ability Scores" defaultExpanded={false}>
       <InputField
         label="STR"
-        name="str"
+        name="abilityScores.str"
         type="number"
-        value={abilityScores.str}
-        onChange={handleAbilityScoreChange}
+        {...register("abilityScores.str", { valueAsNumber: true })}
         placeholder="e.g. 10"
       />
       <InputField
         label="DEX"
-        name="dex"
+        name="abilityScores.dex"
         type="number"
-        value={abilityScores.dex}
-        onChange={handleAbilityScoreChange}
+        {...register("abilityScores.dex", { valueAsNumber: true })}
         placeholder="e.g. 10"
       />
       <InputField
         label="CON"
-        name="con"
+        name="abilityScores.con"
         type="number"
-        value={abilityScores.con}
-        onChange={handleAbilityScoreChange}
+        {...register("abilityScores.con", { valueAsNumber: true })}
         placeholder="e.g. 10"
       />
       <InputField
         label="INT"
-        name="int"
+        name="abilityScores.int"
         type="number"
-        value={abilityScores.int}
-        onChange={handleAbilityScoreChange}
+        {...register("abilityScores.int", { valueAsNumber: true })}
         placeholder="e.g. 10"
       />
       <InputField
         label="WIS"
-        name="wis"
+        name="abilityScores.wis"
         type="number"
-        value={abilityScores.wis}
-        onChange={handleAbilityScoreChange}
+        {...register("abilityScores.wis", { valueAsNumber: true })}
         placeholder="e.g. 10"
       />
       <InputField
         label="CHA"
-        name="cha"
+        name="abilityScores.cha"
         type="number"
-        value={abilityScores.cha}
-        onChange={handleAbilityScoreChange}
+        {...register("abilityScores.cha", { valueAsNumber: true })}
         placeholder="e.g. 10"
       />
     </FieldGroup>

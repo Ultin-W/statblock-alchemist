@@ -2,29 +2,20 @@ import React from 'react';
 import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const ChallengeSection = ({ challengeRating, xp, onChallengeChange }) => {
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    onChallengeChange({
-      [name]: value
-    });
-  };
-
+const ChallengeSection = ({ register }) => {
   return (
     <FieldGroup title="Challenge" defaultExpanded={false}>
       <InputField
         label="Challenge Rating"
         name="challengeRating"
-        value={challengeRating}
-        onChange={handleChange}
+        {...register("challengeRating")}
         placeholder="e.g. 1/2"
       />
       <InputField
         label="XP"
         name="xp"
         type="number"
-        value={xp}
-        onChange={handleChange}
+        {...register("xp")}
         placeholder="e.g. 100"
       />
     </FieldGroup>

@@ -2,54 +2,42 @@ import React from 'react';
 import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const SpeedSection = ({ speed, onSpeedChange }) => {
-  const handleSpeedChange = (type, value) => {
-    onSpeedChange({
-      ...speed,
-      [type]: value
-    });
-  };
-
+const SpeedSection = ({ register }) => {
   return (
     <FieldGroup title="Speed" defaultExpanded={false}>
       <InputField
         label="Walk Speed (ft.)"
-        name="walkSpeed"
+        name="speed.walk"
         type="number"
-        value={speed.walk}
-        onChange={(e) => handleSpeedChange('walk', e.target.value)}
+        {...register("speed.walk")}
         placeholder="e.g. 30"
       />
       <InputField
         label="Fly Speed (ft.)"
-        name="flySpeed"
+        name="speed.fly"
         type="number"
-        value={speed.fly}
-        onChange={(e) => handleSpeedChange('fly', e.target.value)}
+        {...register("speed.fly")}
         placeholder="e.g. 30"
       />
       <InputField
         label="Swim Speed (ft.)"
-        name="swimSpeed"
+        name="speed.swim"
         type="number"
-        value={speed.swim}
-        onChange={(e) => handleSpeedChange('swim', e.target.value)}
+        {...register("speed.swim")}
         placeholder="e.g. 30"
       />
       <InputField
         label="Climb Speed (ft.)"
-        name="climbSpeed"
+        name="speed.climb"
         type="number"
-        value={speed.climb}
-        onChange={(e) => handleSpeedChange('climb', e.target.value)}
+        {...register("speed.climb")}
         placeholder="e.g. 30"
       />
       <InputField
         label="Burrow Speed (ft.)"
-        name="burrowSpeed"
+        name="speed.burrow"
         type="number"
-        value={speed.burrow}
-        onChange={(e) => handleSpeedChange('burrow', e.target.value)}
+        {...register("speed.burrow")}
         placeholder="e.g. 30"
       />
     </FieldGroup>
