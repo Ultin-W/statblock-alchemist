@@ -6,6 +6,18 @@ const FieldGroup = ({ title, children, defaultExpanded = false }) => {
 
   const toggle = () => setExpanded(prev => !prev);
 
+  // Generate HTML-safe ID by keeping only letters, numbers, hyphens, and underscores
+  const generateSafeId = (text) => {
+    return text
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, '') // Remove all non-alphanumeric characters except spaces
+      .replace(/\s+/g, '-')        // Replace spaces with hyphens
+      .replace(/--+/g, '-')        // Replace multiple consecutive hyphens with single hyphen
+      .replace(/^-|-$/g, '');      // Remove leading/trailing hyphens
+  };
+
+  const sectionId = `section-${generateSafeId(title)}`;
+
   return (
     <fieldset className="field-group">
       <div className="field-group__header">
@@ -14,7 +26,7 @@ const FieldGroup = ({ title, children, defaultExpanded = false }) => {
           className="field-group__toggle"
           onClick={toggle}
           aria-expanded={expanded}
-          aria-controls={`section-${title.replace(/\s+/g, '-').toLowerCase()}`}
+          aria-controls={sectionId}
         >
           {expanded ? '▼' : '▶'} {title}
         </button>
@@ -22,7 +34,7 @@ const FieldGroup = ({ title, children, defaultExpanded = false }) => {
 
       {expanded && (
         <div
-          id={`section-${title.replace(/\s+/g, '-').toLowerCase()}`}
+          id={sectionId}
           className="field-group__content"
         >
           {children}
