@@ -1,43 +1,30 @@
 import React from 'react';
-import { useFieldArray } from 'react-hook-form';
-import InputField from '../InputField/InputField';
+import DynamicFieldArray from '../DynamicListSection/DynamicFieldArray';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
 const ActionsSection = ({ control }) => {
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "actions"
-  });
-
-  const addAction = () => {
-    append({ name: '', description: '' });
-  };
+  const fieldDefinitions = [
+    {
+      name: 'name',
+      label: 'Action Name',
+      placeholder: 'e.g. Multiattack'
+    },
+    {
+      name: 'description',
+      label: 'Description',
+      placeholder: 'e.g. The monster makes two attacks: one with its bite and one with its claws.'
+    }
+  ];
 
   return (
     <FieldGroup title="Actions" defaultExpanded={false}>
-      {fields.map((field, index) => (
-        <div key={field.id}>
-          <InputField
-            label="Action Name"
-            name={`actions.${index}.name`}
-            {...control.register(`actions.${index}.name`)}
-            placeholder="e.g. Multiattack"
-          />
-          <InputField
-            label="Description"
-            name={`actions.${index}.description`}
-            {...control.register(`actions.${index}.description`)}
-            placeholder="e.g. The monster makes two attacks with its claws."
-          />
-          <button type="button" onClick={() => remove(index)}>
-            Remove Action
-          </button>
-        </div>
-      ))}
-
-      <button type="button" onClick={addAction}>
-        Add Action
-      </button>
+      <DynamicFieldArray
+        control={control}
+        name="actions"
+        fieldDefinitions={fieldDefinitions}
+        addButtonLabel="Add Action"
+        removeButtonLabel="Remove Action"
+      />
     </FieldGroup>
   );
 };

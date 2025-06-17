@@ -1,43 +1,30 @@
 import React from 'react';
-import { useFieldArray } from 'react-hook-form';
-import InputField from '../InputField/InputField';
+import DynamicFieldArray from '../DynamicListSection/DynamicFieldArray';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
 const LairActionsSection = ({ control }) => {
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "lairActions"
-  });
-
-  const addLairAction = () => {
-    append({ name: '', description: '' });
-  };
+  const fieldDefinitions = [
+    {
+      name: 'name',
+      label: 'Lair Action Name',
+      placeholder: 'e.g. Tremor'
+    },
+    {
+      name: 'description',
+      label: 'Description',
+      placeholder: 'e.g. The ground shakes within 60 feet of the monster.'
+    }
+  ];
 
   return (
     <FieldGroup title="Lair Actions" defaultExpanded={false}>
-      {fields.map((field, index) => (
-        <div key={field.id}>
-          <InputField
-            label="Lair Action Name"
-            name={`lairActions.${index}.name`}
-            {...control.register(`lairActions.${index}.name`)}
-            placeholder="e.g. Quake"
-          />
-          <InputField
-            label="Description"
-            name={`lairActions.${index}.description`}
-            {...control.register(`lairActions.${index}.description`)}
-            placeholder="e.g. The lair shakes violently, causing all creatures to make a DC 15 Dexterity saving throw or fall prone."
-          />
-          <button type="button" onClick={() => remove(index)}>
-            Remove Lair Action
-          </button>
-        </div>
-      ))}
-
-      <button type="button" onClick={addLairAction}>
-        Add Lair Action
-      </button>
+      <DynamicFieldArray
+        control={control}
+        name="lairActions"
+        fieldDefinitions={fieldDefinitions}
+        addButtonLabel="Add Lair Action"
+        removeButtonLabel="Remove Lair Action"
+      />
     </FieldGroup>
   );
 };

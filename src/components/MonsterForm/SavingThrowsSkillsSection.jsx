@@ -1,79 +1,46 @@
 import React from 'react';
-import { useFieldArray } from 'react-hook-form';
-import InputField from '../InputField/InputField';
+import DynamicFieldArray from '../DynamicListSection/DynamicFieldArray';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
 const SavingThrowsSkillsSection = ({ control }) => {
-  const { fields: savingThrowFields, append: appendSavingThrow, remove: removeSavingThrow } = useFieldArray({
-    control,
-    name: "proficiencies.savingThrows"
-  });
+  const savingThrowsFieldDefinitions = [
+    {
+      name: 'value',
+      label: 'Saving Throw',
+      placeholder: 'e.g. Dex +6'
+    }
+  ];
 
-  const { fields: skillFields, append: appendSkill, remove: removeSkill } = useFieldArray({
-    control,
-    name: "proficiencies.skills"
-  });
-
-  const addSavingThrow = () => {
-    appendSavingThrow({ name: '', description: '' });
-  };
-
-  const addSkill = () => {
-    appendSkill({ name: '', description: '' });
-  };
+  const skillsFieldDefinitions = [
+    {
+      name: 'value',
+      label: 'Skill',
+      placeholder: 'e.g. Perception +4'
+    }
+  ];
 
   return (
     <FieldGroup title="Saving Throws & Skills" defaultExpanded={false}>
       <div>
         <h4>Saving Throws</h4>
-        {savingThrowFields.map((field, index) => (
-          <div key={field.id}>
-            <InputField
-              label="Ability"
-              name={`proficiencies.savingThrows.${index}.name`}
-              {...control.register(`proficiencies.savingThrows.${index}.name`)}
-              placeholder="e.g. STR"
-            />
-            <InputField
-              label="Bonus"
-              name={`proficiencies.savingThrows.${index}.description`}
-              {...control.register(`proficiencies.savingThrows.${index}.description`)}
-              placeholder="e.g. +3"
-            />
-            <button type="button" onClick={() => removeSavingThrow(index)}>
-              Remove
-            </button>
-          </div>
-        ))}
-        <button type="button" onClick={addSavingThrow}>
-          Add Saving Throw
-        </button>
+        <DynamicFieldArray
+          control={control}
+          name="proficiencies.savingThrows"
+          fieldDefinitions={savingThrowsFieldDefinitions}
+          addButtonLabel="Add Saving Throw"
+          removeButtonLabel="Remove Saving Throw"
+        />
       </div>
 
       <div>
         <h4>Skills</h4>
-        {skillFields.map((field, index) => (
-          <div key={field.id}>
-            <InputField
-              label="Skill"
-              name={`proficiencies.skills.${index}.name`}
-              {...control.register(`proficiencies.skills.${index}.name`)}
-              placeholder="e.g. Perception"
-            />
-            <InputField
-              label="Bonus"
-              name={`proficiencies.skills.${index}.description`}
-              {...control.register(`proficiencies.skills.${index}.description`)}
-              placeholder="e.g. +4"
-            />
-            <button type="button" onClick={() => removeSkill(index)}>
-              Remove
-            </button>
-          </div>
-        ))}
-        <button type="button" onClick={addSkill}>
-          Add Skill
-        </button>
+        <DynamicFieldArray
+          control={control}
+          name="proficiencies.skills"
+          fieldDefinitions={skillsFieldDefinitions}
+          addButtonLabel="Add Skill"
+          removeButtonLabel="Remove Skill"
+        />
       </div>
     </FieldGroup>
   );

@@ -1,29 +1,32 @@
 import React from 'react';
 import InputField from '../InputField/InputField';
+import RemoveButton from './RemoveButton';
 
 const DynamicListItem = ({
-  field,
+  fieldId, // React Hook Form's field.id for the key
   index,
   onRemove,
-  fields = [],
-  labelPrefix = "Item",
-  namePrefix = "",
-  placeholder = ""
+  control,
+  namePrefix,
+  fieldDefinitions = [{ name: 'value', label: 'Value', placeholder: '' }],
+  removeLabel = "Remove Item"
 }) => {
   return (
-    <div className="dynamic-list-item">
-      {fields.map((fieldConfig) => (
+    <div key={fieldId} className="dynamic-list-item">
+      {fieldDefinitions.map((fieldDef) => (
         <InputField
-          key={fieldConfig.name}
-          label={fieldConfig.label || `${labelPrefix} ${index + 1} ${fieldConfig.name}`}
-          name={`${namePrefix}.${index}.${fieldConfig.name}`}
-          {...fieldConfig.register(`${namePrefix}.${index}.${fieldConfig.name}`)}
-          placeholder={fieldConfig.placeholder || placeholder}
+          key={fieldDef.name}
+          label={fieldDef.label || `${fieldDef.name} ${index + 1}`}
+          name={`${namePrefix}.${index}.${fieldDef.name}`}
+          {...control.register(`${namePrefix}.${index}.${fieldDef.name}`)}
+          placeholder={fieldDef.placeholder}
         />
       ))}
-      <button type="button" onClick={() => onRemove(index)} className="remove-button">
-        Remove {labelPrefix}
-      </button>
+      <RemoveButton
+        onClick={onRemove}
+        index={index}
+        label={removeLabel}
+      />
     </div>
   );
 };
