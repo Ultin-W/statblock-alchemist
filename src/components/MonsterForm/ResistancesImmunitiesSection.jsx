@@ -32,8 +32,8 @@ const ResistancesImmunitiesSection = ({ control }) => {
           <div key={field.id}>
             <InputField
               label="Vulnerability"
-              name={`resistances.vulnerabilities.${index}`}
-              {...control.register(`resistances.vulnerabilities.${index}`)}
+              name={`resistances.vulnerabilities.${index}.value`}
+              {...control.register(`resistances.vulnerabilities.${index}.value`)}
               placeholder="e.g. radiant"
             />
             <button type="button" onClick={() => removeVuln(index)}>
@@ -41,7 +41,7 @@ const ResistancesImmunitiesSection = ({ control }) => {
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => appendVuln("")}>
+        <button type="button" onClick={() => appendVuln({ value: '' })}>
           Add Vulnerability
         </button>
       </div>
@@ -52,8 +52,8 @@ const ResistancesImmunitiesSection = ({ control }) => {
           <div key={field.id}>
             <InputField
               label="Resistance"
-              name={`resistances.resistances.${index}`}
-              {...control.register(`resistances.resistances.${index}`)}
+              name={`resistances.resistances.${index}.value`}
+              {...control.register(`resistances.resistances.${index}.value`)}
               placeholder="e.g. cold"
             />
             <button type="button" onClick={() => removeResist(index)}>
@@ -61,7 +61,7 @@ const ResistancesImmunitiesSection = ({ control }) => {
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => appendResist("")}>
+        <button type="button" onClick={() => appendResist({ value: '' })}>
           Add Resistance
         </button>
       </div>
@@ -72,8 +72,8 @@ const ResistancesImmunitiesSection = ({ control }) => {
           <div key={field.id}>
             <InputField
               label="Immunity"
-              name={`resistances.immunities.${index}`}
-              {...control.register(`resistances.immunities.${index}`)}
+              name={`resistances.immunities.${index}.value`}
+              {...control.register(`resistances.immunities.${index}.value`)}
               placeholder="e.g. poison"
             />
             <button type="button" onClick={() => removeImmune(index)}>
@@ -81,7 +81,7 @@ const ResistancesImmunitiesSection = ({ control }) => {
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => appendImmune("")}>
+        <button type="button" onClick={() => appendImmune({ value: '' })}>
           Add Immunity
         </button>
       </div>
@@ -92,8 +92,8 @@ const ResistancesImmunitiesSection = ({ control }) => {
           <div key={field.id}>
             <InputField
               label="Condition Immunity"
-              name={`resistances.conditionImmunities.${index}`}
-              {...control.register(`resistances.conditionImmunities.${index}`)}
+              name={`resistances.conditionImmunities.${index}.value`}
+              {...control.register(`resistances.conditionImmunities.${index}.value`)}
               placeholder="e.g. charmed"
             />
             <button type="button" onClick={() => removeCondition(index)}>
@@ -101,7 +101,7 @@ const ResistancesImmunitiesSection = ({ control }) => {
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => appendCondition("")}>
+        <button type="button" onClick={() => appendCondition({ value: '' })}>
           Add Condition Immunity
         </button>
       </div>

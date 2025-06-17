@@ -45,7 +45,7 @@ function App() {
       skills: []
     },
 
-    // Resistances & Immunities
+    // Resistances & Immunities (object arrays for consistency)
     resistances: {
       vulnerabilities: [],
       resistances: [],
@@ -53,7 +53,7 @@ function App() {
       conditionImmunities: []
     },
 
-    // Senses & Languages
+    // Senses & Languages (object arrays for React Hook Form compatibility)
     senses: [],
     languages: [],
 
@@ -61,7 +61,7 @@ function App() {
     challengeRating: '',
     xp: '',
 
-    // Features
+    // Features (object arrays with name and description)
     traits: [],
     actions: [],
     reactions: [],

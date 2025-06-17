@@ -10,20 +10,27 @@ const LanguagesSection = ({ control }) => {
   });
 
   const addLanguage = () => {
-    append("");
+    append({ value: '' });
+  };
+
+  const removeLanguage = (index) => {
+    remove(index);
   };
 
   return (
     <FieldGroup title="Languages" defaultExpanded={false}>
+      {fields.length === 0 && (
+        <p>No languages added yet. Click "Add Language" to add one.</p>
+      )}
       {fields.map((field, index) => (
         <div key={field.id}>
           <InputField
-            label="Language"
-            name={`languages.${index}`}
-            {...control.register(`languages.${index}`)}
+            label={`Language ${index + 1}`}
+            name={`languages.${index}.value`}
+            {...control.register(`languages.${index}.value`)}
             placeholder="e.g. Common"
           />
-          <button type="button" onClick={() => remove(index)}>
+          <button type="button" onClick={() => removeLanguage(index)}>
             Remove Language
           </button>
         </div>

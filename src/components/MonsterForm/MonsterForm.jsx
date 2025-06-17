@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import BasicInfoSection from './BasicInfoSection';
 import ArmorSection from './ArmorSection';
 import HitPointsSection from './HitPointsSection';
@@ -20,38 +20,22 @@ import './MonsterForm.scss';
 
 const MonsterForm = ({ formData, onFormDataChange }) => {
   // Use React Hook Form as the single source of truth
-  const { register, control, watch, setValue, getValues } = useForm({
+  const { register, control, watch } = useForm({
     defaultValues: formData,
     mode: 'onChange'
   });
 
-  // Watch all form data and sync with parent when it changes
+  // Watch all form data
   const watchedFormData = watch();
 
-  // Sync form data with parent component
+  // Debounced sync to prevent infinite loops
   React.useEffect(() => {
-    // Use a ref to prevent infinite loops by comparing stringified data
-    const currentData = JSON.stringify(watchedFormData);
-    const parentData = JSON.stringify(formData);
-
-    if (currentData !== parentData) {
+    const timeoutId = setTimeout(() => {
       onFormDataChange(watchedFormData);
-    }
-  }, [watchedFormData]);
+    }, 300); // Debounce to 300ms
 
-  // Update form when parent data changes (e.g., from external sources)
-  React.useEffect(() => {
-    const currentFormData = getValues();
-    const formDataString = JSON.stringify(currentFormData);
-    const parentDataString = JSON.stringify(formData);
-
-    if (formDataString !== parentDataString) {
-      // Reset form with new data
-      Object.keys(formData).forEach(key => {
-        setValue(key, formData[key]);
-      });
-    }
-  }, [formData, setValue, getValues]);
+    return () => clearTimeout(timeoutId);
+  }, [watchedFormData, onFormDataChange]);
 
   return (
     <form className="monster-form">

@@ -10,20 +10,27 @@ const SensesSection = ({ control }) => {
   });
 
   const addSense = () => {
-    append("");
+    append({ value: '' }); // Use object like ReactionsSection
+  };
+
+  const removeSense = (index) => {
+    remove(index);
   };
 
   return (
     <FieldGroup title="Senses" defaultExpanded={false}>
+      {fields.length === 0 && (
+        <p>No senses added yet. Click "Add Sense" to add one.</p>
+      )}
       {fields.map((field, index) => (
         <div key={field.id}>
           <InputField
-            label="Sense"
-            name={`senses.${index}`}
-            {...control.register(`senses.${index}`)}
+            label={`Sense ${index + 1}`}
+            name={`senses.${index}.value`}
+            {...control.register(`senses.${index}.value`)}
             placeholder="e.g. darkvision 60 ft."
           />
-          <button type="button" onClick={() => remove(index)}>
+          <button type="button" onClick={() => removeSense(index)}>
             Remove Sense
           </button>
         </div>
