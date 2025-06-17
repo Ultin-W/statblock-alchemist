@@ -2,16 +2,11 @@ import React from 'react';
 import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const SpeedSection = ({ data, onChange }) => {
+const SpeedSection = ({ speed, onSpeedChange }) => {
   const handleSpeedChange = (type, value) => {
-    onChange({
-      target: {
-        name: 'speed',
-        value: {
-          ...data.speed,
-          [type]: value
-        }
-      }
+    onSpeedChange({
+      ...speed,
+      [type]: value
     });
   };
 
@@ -21,7 +16,7 @@ const SpeedSection = ({ data, onChange }) => {
         label="Walk Speed (ft.)"
         name="walkSpeed"
         type="number"
-        value={data.speed.walk}
+        value={speed.walk}
         onChange={(e) => handleSpeedChange('walk', e.target.value)}
         placeholder="e.g. 30"
       />
@@ -29,7 +24,7 @@ const SpeedSection = ({ data, onChange }) => {
         label="Fly Speed (ft.)"
         name="flySpeed"
         type="number"
-        value={data.speed.fly}
+        value={speed.fly}
         onChange={(e) => handleSpeedChange('fly', e.target.value)}
         placeholder="e.g. 30"
       />
@@ -37,7 +32,7 @@ const SpeedSection = ({ data, onChange }) => {
         label="Swim Speed (ft.)"
         name="swimSpeed"
         type="number"
-        value={data.speed.swim}
+        value={speed.swim}
         onChange={(e) => handleSpeedChange('swim', e.target.value)}
         placeholder="e.g. 30"
       />
@@ -45,7 +40,7 @@ const SpeedSection = ({ data, onChange }) => {
         label="Climb Speed (ft.)"
         name="climbSpeed"
         type="number"
-        value={data.speed.climb}
+        value={speed.climb}
         onChange={(e) => handleSpeedChange('climb', e.target.value)}
         placeholder="e.g. 30"
       />
@@ -53,7 +48,7 @@ const SpeedSection = ({ data, onChange }) => {
         label="Burrow Speed (ft.)"
         name="burrowSpeed"
         type="number"
-        value={data.speed.burrow}
+        value={speed.burrow}
         onChange={(e) => handleSpeedChange('burrow', e.target.value)}
         placeholder="e.g. 30"
       />

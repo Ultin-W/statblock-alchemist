@@ -2,17 +2,12 @@ import React from 'react';
 import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const AbilityScoresSection = ({ data, onChange }) => {
+const AbilityScoresSection = ({ abilityScores, onAbilityScoresChange }) => {
   const handleAbilityScoreChange = (e) => {
     const { name, value } = e.target;
-    onChange({
-      target: {
-        name: 'abilityScores',
-        value: {
-          ...data.abilityScores,
-          [name]: parseInt(value) || 10
-        }
-      }
+    onAbilityScoresChange({
+      ...abilityScores,
+      [name]: parseInt(value) || 10
     });
   };
 
@@ -22,7 +17,7 @@ const AbilityScoresSection = ({ data, onChange }) => {
         label="STR"
         name="str"
         type="number"
-        value={data.abilityScores.str}
+        value={abilityScores.str}
         onChange={handleAbilityScoreChange}
         placeholder="e.g. 10"
       />
@@ -30,7 +25,7 @@ const AbilityScoresSection = ({ data, onChange }) => {
         label="DEX"
         name="dex"
         type="number"
-        value={data.abilityScores.dex}
+        value={abilityScores.dex}
         onChange={handleAbilityScoreChange}
         placeholder="e.g. 10"
       />
@@ -38,7 +33,7 @@ const AbilityScoresSection = ({ data, onChange }) => {
         label="CON"
         name="con"
         type="number"
-        value={data.abilityScores.con}
+        value={abilityScores.con}
         onChange={handleAbilityScoreChange}
         placeholder="e.g. 10"
       />
@@ -46,7 +41,7 @@ const AbilityScoresSection = ({ data, onChange }) => {
         label="INT"
         name="int"
         type="number"
-        value={data.abilityScores.int}
+        value={abilityScores.int}
         onChange={handleAbilityScoreChange}
         placeholder="e.g. 10"
       />
@@ -54,7 +49,7 @@ const AbilityScoresSection = ({ data, onChange }) => {
         label="WIS"
         name="wis"
         type="number"
-        value={data.abilityScores.wis}
+        value={abilityScores.wis}
         onChange={handleAbilityScoreChange}
         placeholder="e.g. 10"
       />
@@ -62,7 +57,7 @@ const AbilityScoresSection = ({ data, onChange }) => {
         label="CHA"
         name="cha"
         type="number"
-        value={data.abilityScores.cha}
+        value={abilityScores.cha}
         onChange={handleAbilityScoreChange}
         placeholder="e.g. 10"
       />

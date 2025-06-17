@@ -2,28 +2,18 @@ import React from 'react';
 import DynamicListSection from '../DynamicListSection/DynamicListSection';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const SavingThrowsSkillsSection = ({ data, onChange }) => {
+const SavingThrowsSkillsSection = ({ proficiencies, onProficienciesChange }) => {
   const handleSavingThrowsChange = (newSavingThrows) => {
-    onChange({
-      target: {
-        name: 'proficiencies',
-        value: {
-          ...data.proficiencies,
-          savingThrows: newSavingThrows
-        }
-      }
+    onProficienciesChange({
+      ...proficiencies,
+      savingThrows: newSavingThrows
     });
   };
 
   const handleSkillsChange = (newSkills) => {
-    onChange({
-      target: {
-        name: 'proficiencies',
-        value: {
-          ...data.proficiencies,
-          skills: newSkills
-        }
-      }
+    onProficienciesChange({
+      ...proficiencies,
+      skills: newSkills
     });
   };
 
@@ -31,7 +21,7 @@ const SavingThrowsSkillsSection = ({ data, onChange }) => {
     <FieldGroup title="Saving Throws & Skills" defaultExpanded={false}>
       <DynamicListSection
         title="Saving Throws"
-        items={data.proficiencies.savingThrows}
+        items={proficiencies.savingThrows}
         onItemsChange={handleSavingThrowsChange}
         nameLabel="Ability"
         namePlaceholder="e.g. STR"
@@ -42,7 +32,7 @@ const SavingThrowsSkillsSection = ({ data, onChange }) => {
       />
       <DynamicListSection
         title="Skills"
-        items={data.proficiencies.skills}
+        items={proficiencies.skills}
         onItemsChange={handleSkillsChange}
         nameLabel="Skill"
         namePlaceholder="e.g. Perception"

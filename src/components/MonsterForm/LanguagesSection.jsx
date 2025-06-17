@@ -1,14 +1,9 @@
 import React from 'react';
 import DynamicListSection from '../DynamicListSection/DynamicListSection';
 
-const LanguagesSection = ({ data, onChange }) => {
+const LanguagesSection = ({ languages, onLanguagesChange }) => {
   const handleArrayChange = (newItems) => {
-    onChange({
-      target: {
-        name: 'languages',
-        value: newItems.map(item => item.name)
-      }
-    });
+    onLanguagesChange(newItems.map(item => item.name));
   };
 
   // Convert array to the format expected by DynamicListSection
@@ -19,7 +14,7 @@ const LanguagesSection = ({ data, onChange }) => {
   return (
     <DynamicListSection
       title="Languages"
-      items={convertToItems(data.languages)}
+      items={convertToItems(languages)}
       onItemsChange={handleArrayChange}
       nameLabel="Language"
       namePlaceholder="e.g. Common"

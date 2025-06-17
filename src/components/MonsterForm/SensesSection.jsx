@@ -1,14 +1,9 @@
 import React from 'react';
 import DynamicListSection from '../DynamicListSection/DynamicListSection';
 
-const SensesSection = ({ data, onChange }) => {
+const SensesSection = ({ senses, onSensesChange }) => {
   const handleArrayChange = (newItems) => {
-    onChange({
-      target: {
-        name: 'senses',
-        value: newItems.map(item => `${item.name} ${item.description}`.trim())
-      }
-    });
+    onSensesChange(newItems.map(item => `${item.name} ${item.description}`.trim()));
   };
 
   // Convert array to the format expected by DynamicListSection
@@ -26,7 +21,7 @@ const SensesSection = ({ data, onChange }) => {
   return (
     <DynamicListSection
       title="Senses"
-      items={convertToItems(data.senses)}
+      items={convertToItems(senses)}
       onItemsChange={handleArrayChange}
       nameLabel="Sense"
       namePlaceholder="e.g. darkvision"

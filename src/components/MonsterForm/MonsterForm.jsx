@@ -18,9 +18,54 @@ import RegionalEffectsSection from './RegionalEffectsSection';
 import './MonsterForm.scss';
 
 const MonsterForm = ({ formData, onFormDataChange }) => {
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    onFormDataChange({ ...formData, [name]: value });
+  // Handler for updating basic info
+  const handleBasicInfoChange = (newBasicInfo) => {
+    onFormDataChange({ ...formData, basicInfo: newBasicInfo });
+  };
+
+  // Handler for updating armor
+  const handleArmorChange = (newArmor) => {
+    onFormDataChange({ ...formData, ...newArmor });
+  };
+
+  // Handler for updating hit points
+  const handleHitPointsChange = (newHitPoints) => {
+    onFormDataChange({ ...formData, ...newHitPoints });
+  };
+
+  // Handler for updating speed
+  const handleSpeedChange = (newSpeed) => {
+    onFormDataChange({ ...formData, speed: newSpeed });
+  };
+
+  // Handler for updating ability scores
+  const handleAbilityScoresChange = (newAbilityScores) => {
+    onFormDataChange({ ...formData, abilityScores: newAbilityScores });
+  };
+
+  // Handler for updating proficiencies
+  const handleProficienciesChange = (newProficiencies) => {
+    onFormDataChange({ ...formData, proficiencies: newProficiencies });
+  };
+
+  // Handler for updating resistances
+  const handleResistancesChange = (newResistances) => {
+    onFormDataChange({ ...formData, resistances: newResistances });
+  };
+
+  // Handler for updating senses
+  const handleSensesChange = (newSenses) => {
+    onFormDataChange({ ...formData, senses: newSenses });
+  };
+
+  // Handler for updating languages
+  const handleLanguagesChange = (newLanguages) => {
+    onFormDataChange({ ...formData, languages: newLanguages });
+  };
+
+  // Handler for updating challenge
+  const handleChallengeChange = (newChallenge) => {
+    onFormDataChange({ ...formData, ...newChallenge });
   };
 
   // Handler for updating traits array
@@ -55,16 +100,16 @@ const MonsterForm = ({ formData, onFormDataChange }) => {
 
   return (
     <form className="monster-form">
-      <BasicInfoSection data={formData} onChange={handleChange} />
-      <ArmorSection data={formData} onChange={handleChange} />
-      <HitPointsSection data={formData} onChange={handleChange} />
-      <SpeedSection data={formData} onChange={handleChange} />
-      <AbilityScoresSection data={formData} onChange={handleChange} />
-      <SavingThrowsSkillsSection data={formData} onChange={handleChange} />
-      <ResistancesImmunitiesSection data={formData} onChange={handleChange} />
-      <SensesSection data={formData} onChange={handleChange} />
-      <LanguagesSection data={formData} onChange={handleChange} />
-      <ChallengeSection data={formData} onChange={handleChange} />
+      <BasicInfoSection basicInfo={formData.basicInfo} onBasicInfoChange={handleBasicInfoChange} />
+      <ArmorSection ac={formData.ac} armorType={formData.armorType} onArmorChange={handleArmorChange} />
+      <HitPointsSection hp={formData.hp} hitDice={formData.hitDice} onHitPointsChange={handleHitPointsChange} />
+      <SpeedSection speed={formData.speed} onSpeedChange={handleSpeedChange} />
+      <AbilityScoresSection abilityScores={formData.abilityScores} onAbilityScoresChange={handleAbilityScoresChange} />
+      <SavingThrowsSkillsSection proficiencies={formData.proficiencies} onProficienciesChange={handleProficienciesChange} />
+      <ResistancesImmunitiesSection resistances={formData.resistances} onResistancesChange={handleResistancesChange} />
+      <SensesSection senses={formData.senses} onSensesChange={handleSensesChange} />
+      <LanguagesSection languages={formData.languages} onLanguagesChange={handleLanguagesChange} />
+      <ChallengeSection challengeRating={formData.challengeRating} xp={formData.xp} onChallengeChange={handleChallengeChange} />
       <TraitsSection traits={formData.traits} onTraitsChange={handleTraitsChange} />
       <ActionsSection actions={formData.actions} onActionsChange={handleActionsChange} />
       <ReactionsSection reactions={formData.reactions} onReactionsChange={handleReactionsChange} />
