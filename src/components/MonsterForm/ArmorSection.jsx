@@ -7,14 +7,12 @@ const ArmorSection = ({ register }) => {
     <FieldGroup title="Armor" defaultExpanded={false}>
       <InputField
         label="AC"
-        name="ac"
         type="number"
         {...register("ac")}
         placeholder="e.g. 10"
       />
       <InputField
         label="Type"
-        name="armorType"
         {...register("armorType")}
         placeholder="e.g. natural armor"
       />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import MonsterForm from './components/MonsterForm/MonsterForm';
 import StatBlock from './components/StatBlock/StatBlock';
 import './App.scss';
@@ -70,9 +70,9 @@ function App() {
     regionalEffects: []
   });
 
-  const handleFormDataChange = (newData) => {
+  const handleFormDataChange = useCallback((newData) => {
     setFormData(newData);
-  };
+  }, []);
 
   return (
     <div className="App">

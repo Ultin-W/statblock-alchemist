@@ -7,13 +7,11 @@ const ChallengeSection = ({ register }) => {
     <FieldGroup title="Challenge" defaultExpanded={false}>
       <InputField
         label="Challenge Rating"
-        name="challengeRating"
         {...register("challengeRating")}
         placeholder="e.g. 1/2"
       />
       <InputField
         label="XP"
-        name="xp"
         type="number"
         {...register("xp")}
         placeholder="e.g. 100"

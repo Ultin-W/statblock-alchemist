@@ -32,14 +32,12 @@ const FieldGroup = ({ title, children, defaultExpanded = false }) => {
         </button>
       </div>
 
-      {expanded && (
-        <div
-          id={sectionId}
-          className="field-group__content"
-        >
-          {children}
-        </div>
-      )}
+      <div
+        id={sectionId}
+        className={`field-group__content ${expanded ? 'field-group__content--expanded' : 'field-group__content--collapsed'}`}
+      >
+        {children}
+      </div>
     </fieldset>
   );
 };

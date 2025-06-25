@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import BasicInfoSection from './BasicInfoSection';
 import ArmorSection from './ArmorSection';
@@ -19,23 +19,39 @@ import RegionalEffectsSection from './RegionalEffectsSection';
 import './MonsterForm.scss';
 
 const MonsterForm = ({ formData, onFormDataChange }) => {
+  const timeoutRef = useRef(null);
+  const onFormDataChangeRef = useRef(onFormDataChange);
+
+  // Keep the callback reference updated
+  useEffect(() => {
+    onFormDataChangeRef.current = onFormDataChange;
+  }, [onFormDataChange]);
+
   // Use React Hook Form as the single source of truth
   const { register, control, watch } = useForm({
     defaultValues: formData,
     mode: 'onChange'
   });
 
-  // Watch all form data
-  const watchedFormData = watch();
+  // Watch all form data with subscription approach
+  useEffect(() => {
+    const subscription = watch((data) => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
 
-  // Debounced sync to prevent infinite loops
-  React.useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      onFormDataChange(watchedFormData);
-    }, 300); // Debounce to 300ms
+      timeoutRef.current = setTimeout(() => {
+        onFormDataChangeRef.current(data);
+      }, 300);
+    });
 
-    return () => clearTimeout(timeoutId);
-  }, [watchedFormData, onFormDataChange]);
+    return () => {
+      subscription.unsubscribe();
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [watch]);
 
   return (
     <form className="monster-form">
