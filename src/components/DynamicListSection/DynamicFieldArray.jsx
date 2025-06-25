@@ -5,6 +5,7 @@ import AddButton from './AddButton';
 
 const DynamicFieldArray = ({
   control,
+  setValue,
   name,
   fieldDefinitions = [{ name: 'value', label: 'Value', placeholder: '' }],
   defaultValue = {},
@@ -42,6 +43,7 @@ const DynamicFieldArray = ({
           index={index}
           onRemove={remove}
           control={control}
+          setValue={setValue}
           namePrefix={name}
           fieldDefinitions={fieldDefinitions}
           removeLabel={removeButtonLabel}

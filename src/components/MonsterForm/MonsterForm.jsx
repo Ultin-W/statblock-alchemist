@@ -28,7 +28,7 @@ const MonsterForm = ({ formData, onFormDataChange }) => {
   }, [onFormDataChange]);
 
   // Use React Hook Form as the single source of truth
-  const { register, control, watch } = useForm({
+  const { register, control, watch, setValue } = useForm({
     defaultValues: formData,
     mode: 'onChange'
   });
@@ -55,22 +55,22 @@ const MonsterForm = ({ formData, onFormDataChange }) => {
 
   return (
     <form className="monster-form">
-      <BasicInfoSection register={register} />
-      <ArmorSection register={register} />
-      <HitPointsSection register={register} />
-      <SpeedSection register={register} />
-      <AbilityScoresSection register={register} />
-      <SavingThrowsSkillsSection control={control} />
-      <ResistancesImmunitiesSection control={control} />
-      <SensesSection control={control} />
-      <LanguagesSection control={control} />
-      <ChallengeSection register={register} />
-      <TraitsSection control={control} />
-      <ActionsSection control={control} />
-      <ReactionsSection control={control} />
-      <LegendaryActionsSection control={control} />
-      <LairActionsSection control={control} />
-      <RegionalEffectsSection control={control} />
+      <BasicInfoSection register={register} setValue={setValue} />
+      <ArmorSection register={register} setValue={setValue} />
+      <HitPointsSection register={register} setValue={setValue} />
+      <SpeedSection register={register} setValue={setValue} />
+      <AbilityScoresSection register={register} setValue={setValue} />
+      <SavingThrowsSkillsSection control={control} setValue={setValue} />
+      <ResistancesImmunitiesSection control={control} setValue={setValue} />
+      <SensesSection control={control} setValue={setValue} />
+      <LanguagesSection control={control} setValue={setValue} />
+      <ChallengeSection register={register} setValue={setValue} />
+      <TraitsSection control={control} setValue={setValue} />
+      <ActionsSection control={control} setValue={setValue} />
+      <ReactionsSection control={control} setValue={setValue} />
+      <LegendaryActionsSection control={control} setValue={setValue} />
+      <LairActionsSection control={control} setValue={setValue} />
+      <RegionalEffectsSection control={control} setValue={setValue} />
     </form>
   );
 };

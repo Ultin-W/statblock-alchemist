@@ -2,7 +2,7 @@ import React from 'react';
 import DynamicFieldArray from '../DynamicListSection/DynamicFieldArray';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const RegionalEffectsSection = ({ control }) => {
+const RegionalEffectsSection = ({ control, setValue }) => {
   const fieldDefinitions = [
     {
       name: 'name',
@@ -20,6 +20,7 @@ const RegionalEffectsSection = ({ control }) => {
     <FieldGroup title="Regional Effects" defaultExpanded={false}>
       <DynamicFieldArray
         control={control}
+        setValue={setValue}
         name="regionalEffects"
         fieldDefinitions={fieldDefinitions}
         addButtonLabel="Add Regional Effect"

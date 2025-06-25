@@ -2,7 +2,7 @@ import React from 'react';
 import DynamicFieldArray from '../DynamicListSection/DynamicFieldArray';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const SavingThrowsSkillsSection = ({ control }) => {
+const SavingThrowsSkillsSection = ({ control, setValue }) => {
   const savingThrowsFieldDefinitions = [
     {
       name: 'value',
@@ -25,6 +25,7 @@ const SavingThrowsSkillsSection = ({ control }) => {
         <h4>Saving Throws</h4>
         <DynamicFieldArray
           control={control}
+          setValue={setValue}
           name="proficiencies.savingThrows"
           fieldDefinitions={savingThrowsFieldDefinitions}
           addButtonLabel="Add Saving Throw"
@@ -36,6 +37,7 @@ const SavingThrowsSkillsSection = ({ control }) => {
         <h4>Skills</h4>
         <DynamicFieldArray
           control={control}
+          setValue={setValue}
           name="proficiencies.skills"
           fieldDefinitions={skillsFieldDefinitions}
           addButtonLabel="Add Skill"

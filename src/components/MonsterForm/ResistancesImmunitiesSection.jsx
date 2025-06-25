@@ -2,7 +2,7 @@ import React from 'react';
 import DynamicFieldArray from '../DynamicListSection/DynamicFieldArray';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const ResistancesImmunitiesSection = ({ control }) => {
+const ResistancesImmunitiesSection = ({ control, setValue }) => {
   const vulnerabilityFieldDefinitions = [
     {
       name: 'value',
@@ -41,6 +41,7 @@ const ResistancesImmunitiesSection = ({ control }) => {
         <h4>Damage Vulnerabilities</h4>
         <DynamicFieldArray
           control={control}
+          setValue={setValue}
           name="resistances.vulnerabilities"
           fieldDefinitions={vulnerabilityFieldDefinitions}
           addButtonLabel="Add Vulnerability"
@@ -52,6 +53,7 @@ const ResistancesImmunitiesSection = ({ control }) => {
         <h4>Damage Resistances</h4>
         <DynamicFieldArray
           control={control}
+          setValue={setValue}
           name="resistances.resistances"
           fieldDefinitions={resistanceFieldDefinitions}
           addButtonLabel="Add Resistance"
@@ -63,6 +65,7 @@ const ResistancesImmunitiesSection = ({ control }) => {
         <h4>Damage Immunities</h4>
         <DynamicFieldArray
           control={control}
+          setValue={setValue}
           name="resistances.immunities"
           fieldDefinitions={immunityFieldDefinitions}
           addButtonLabel="Add Immunity"
@@ -74,6 +77,7 @@ const ResistancesImmunitiesSection = ({ control }) => {
         <h4>Condition Immunities</h4>
         <DynamicFieldArray
           control={control}
+          setValue={setValue}
           name="resistances.conditionImmunities"
           fieldDefinitions={conditionImmunityFieldDefinitions}
           addButtonLabel="Add Condition Immunity"

@@ -2,7 +2,7 @@ import React from 'react';
 import DynamicFieldArray from '../DynamicListSection/DynamicFieldArray';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const LegendaryActionsSection = ({ control }) => {
+const LegendaryActionsSection = ({ control, setValue }) => {
   const fieldDefinitions = [
     {
       name: 'name',
@@ -20,6 +20,7 @@ const LegendaryActionsSection = ({ control }) => {
     <FieldGroup title="Legendary Actions" defaultExpanded={false}>
       <DynamicFieldArray
         control={control}
+        setValue={setValue}
         name="legendaryActions"
         fieldDefinitions={fieldDefinitions}
         addButtonLabel="Add Legendary Action"

@@ -2,7 +2,7 @@ import React from 'react';
 import DynamicFieldArray from '../DynamicListSection/DynamicFieldArray';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const TraitsSection = ({ control }) => {
+const TraitsSection = ({ control, setValue }) => {
   const fieldDefinitions = [
     {
       name: 'name',
@@ -20,6 +20,7 @@ const TraitsSection = ({ control }) => {
     <FieldGroup title="Special Traits" defaultExpanded={false}>
       <DynamicFieldArray
         control={control}
+        setValue={setValue}
         name="traits"
         fieldDefinitions={fieldDefinitions}
         addButtonLabel="Add Trait"

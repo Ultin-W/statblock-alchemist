@@ -7,6 +7,7 @@ const DynamicListItem = ({
   index,
   onRemove,
   control,
+  setValue,
   namePrefix,
   fieldDefinitions = [{ name: 'value', label: 'Value', placeholder: '' }],
   removeLabel = "Remove Item"
@@ -19,6 +20,7 @@ const DynamicListItem = ({
           label={fieldDef.label || `${fieldDef.name} ${index + 1}`}
           name={`${namePrefix}.${index}.${fieldDef.name}`}
           {...control.register(`${namePrefix}.${index}.${fieldDef.name}`)}
+          setValue={setValue}
           placeholder={fieldDef.placeholder}
         />
       ))}

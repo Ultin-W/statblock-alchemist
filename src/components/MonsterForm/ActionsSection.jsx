@@ -2,7 +2,7 @@ import React from 'react';
 import DynamicFieldArray from '../DynamicListSection/DynamicFieldArray';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const ActionsSection = ({ control }) => {
+const ActionsSection = ({ control, setValue }) => {
   const fieldDefinitions = [
     {
       name: 'name',
@@ -20,6 +20,7 @@ const ActionsSection = ({ control }) => {
     <FieldGroup title="Actions" defaultExpanded={false}>
       <DynamicFieldArray
         control={control}
+        setValue={setValue}
         name="actions"
         fieldDefinitions={fieldDefinitions}
         addButtonLabel="Add Action"

@@ -2,7 +2,7 @@ import React from 'react';
 import DynamicFieldArray from '../DynamicListSection/DynamicFieldArray';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const ReactionsSection = ({ control }) => {
+const ReactionsSection = ({ control, setValue }) => {
   const fieldDefinitions = [
     {
       name: 'name',
@@ -20,6 +20,7 @@ const ReactionsSection = ({ control }) => {
     <FieldGroup title="Reactions" defaultExpanded={false}>
       <DynamicFieldArray
         control={control}
+        setValue={setValue}
         name="reactions"
         fieldDefinitions={fieldDefinitions}
         addButtonLabel="Add Reaction"
