@@ -1,5 +1,6 @@
 import React from 'react';
 import MonsterDataFormatter from '../../services/monsterDataFormatter';
+import MonsterImageGenerator from '../MonsterImageGenerator/MonsterImageGenerator';
 import './StatBlock.scss';
 
 const StatBlock = ({ monsterData }) => {
@@ -103,6 +104,9 @@ const StatBlock = ({ monsterData }) => {
         <h1 className="creature-name">{monster.name}</h1>
         {monster.tag && <div className="creature-tag">{monster.tag}</div>}
       </div>
+
+      {/* Monster Image */}
+      <MonsterImageGenerator monster={monster} />
 
       {/* Creature Type */}
       <div className="creature-type">
