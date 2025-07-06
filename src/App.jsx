@@ -1,9 +1,14 @@
 import React, { useState, useCallback } from 'react';
 import MonsterForm from './components/MonsterForm/MonsterForm';
 import StatBlock from './components/StatBlock/StatBlock';
+import ExportModal from './components/ExportModal/ExportModal';
+import { VTTExporter } from './services/vttExporter';
 import './App.scss';
 
 function App() {
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [exportedText, setExportedText] = useState('');
+
   const [formData, setFormData] = useState({
     // Basic Information
     basicInfo: {
@@ -74,10 +79,23 @@ function App() {
     setFormData(newData);
   }, []);
 
+  const handleExport = useCallback(() => {
+    const vttText = VTTExporter.exportToVTT(formData);
+    setExportedText(vttText);
+    setIsExportModalOpen(true);
+  }, [formData]);
+
+  const handleCloseExportModal = useCallback(() => {
+    setIsExportModalOpen(false);
+  }, []);
+
   return (
     <div className="App">
       <header>
         <h1>StatBlock Alchemist</h1>
+        <button className="export-button" onClick={handleExport}>
+          Export to VTT
+        </button>
       </header>
 
       <main className="app-main">
@@ -88,6 +106,12 @@ function App() {
           <StatBlock monsterData={formData} />
         </div>
       </main>
+
+      <ExportModal
+        isOpen={isExportModalOpen}
+        onClose={handleCloseExportModal}
+        exportedText={exportedText}
+      />
     </div>
   );
 }
