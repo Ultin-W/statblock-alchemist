@@ -6,6 +6,9 @@ import './MonsterImageGenerator.scss';
 const MonsterImageGenerator = ({ monster }) => {
   const [shouldGenerateImage, setShouldGenerateImage] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [showRefinement, setShowRefinement] = useState(false);
+  const [refinementPrompt, setRefinementPrompt] = useState('');
+  const [activePrompt, setActivePrompt] = useState('');
 
   // Generate smart prompt based on monster data
   const imagePrompt = useMemo(() => {
@@ -189,8 +192,8 @@ const MonsterImageGenerator = ({ monster }) => {
     return undefined;
   }, [monster?.name]);
 
-  // Only generate image if explicitly requested
-  const imageUrl = usePollinationsImage(shouldGenerateImage ? imagePrompt : null, {
+  // Only generate image if explicitly requested, using the active prompt
+  const imageUrl = usePollinationsImage(shouldGenerateImage ? activePrompt : null, {
     width: 400,
     height: 400,
     seed: imageSeed
@@ -201,6 +204,7 @@ const MonsterImageGenerator = ({ monster }) => {
 
   const handleGenerateImage = () => {
     setIsGenerating(true);
+    setActivePrompt(imagePrompt);
     setShouldGenerateImage(true);
   };
 
@@ -213,12 +217,35 @@ const MonsterImageGenerator = ({ monster }) => {
     // Could add error handling here if needed
   };
 
+  const handleRefineClick = () => {
+    setRefinementPrompt(imagePrompt);
+    setShowRefinement(true);
+  };
+
+  const handleRefinementGenerate = () => {
+    if (refinementPrompt.trim()) {
+      setIsGenerating(true);
+      setActivePrompt(refinementPrompt.trim());
+      setShouldGenerateImage(true);
+      setShowRefinement(false);
+    }
+  };
+
+  const handleCancelRefinement = () => {
+    setShowRefinement(false);
+    setRefinementPrompt('');
+  };
+
   // Reset generation state when monster data changes
   React.useEffect(() => {
     if (shouldGenerateImage) {
       setShouldGenerateImage(false);
       setIsGenerating(false);
     }
+    // Also clear refinement and active prompt state
+    setShowRefinement(false);
+    setRefinementPrompt('');
+    setActivePrompt('');
   }, [imagePrompt]);
 
   // Dragon Placeholder Component
@@ -243,6 +270,15 @@ const MonsterImageGenerator = ({ monster }) => {
               onError={handleImageError}
               style={{ display: isGenerating ? 'none' : 'block' }}
             />
+            {!isGenerating && (
+              <button
+                className="generate-image-btn refine-btn"
+                onClick={handleRefineClick}
+                type="button"
+              >
+                Refine Image
+              </button>
+            )}
             {isGenerating && (
               <div className="image-placeholder">
                 <div className="loading-spinner"></div>
@@ -272,10 +308,41 @@ const MonsterImageGenerator = ({ monster }) => {
         )}
       </div>
 
+      {/* Refinement Interface */}
+      {showRefinement && (
+        <div className="refinement-interface">
+          <h4>Refine Your Image</h4>
+          <p>Modify the prompt to refine your image:</p>
+          <textarea
+            value={refinementPrompt}
+            onChange={(e) => setRefinementPrompt(e.target.value)}
+            className="refinement-prompt"
+            rows="4"
+            placeholder="Add details to refine your image..."
+          />
+          <div className="refinement-buttons">
+            <button
+              className="refinement-btn generate"
+              onClick={handleRefinementGenerate}
+              disabled={!refinementPrompt.trim() || isGenerating}
+            >
+              Generate Refined Image
+            </button>
+            <button
+              className="refinement-btn cancel"
+              onClick={handleCancelRefinement}
+              disabled={isGenerating}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Show prompt info when generating or generated */}
       {shouldGenerateImage && (
         <div className="prompt-info">
-          <small>Prompt: {imagePrompt}</small>
+          <small>Prompt: {activePrompt || imagePrompt}</small>
         </div>
       )}
     </div>
