@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import './ExportModal.scss';
 
-const ExportModal = ({ isOpen, onClose, exportedText }) => {
+const ExportModal = ({ isOpen, onClose, exportData }) => {
   const [copied, setCopied] = useState(false);
+  const [activeFormat, setActiveFormat] = useState('vtt');
+
+  const getCurrentExportText = () => {
+    return exportData?.[activeFormat] || '';
+  };
 
   const handleCopy = async () => {
+    const textToCopy = getCurrentExportText();
     try {
-      await navigator.clipboard.writeText(exportedText);
+      await navigator.clipboard.writeText(textToCopy);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error('Failed to copy text:', error);
       // Fallback for older browsers
       const textArea = document.createElement('textarea');
-      textArea.value = exportedText;
+      textArea.value = textToCopy;
       document.body.appendChild(textArea);
       textArea.select();
       document.execCommand('copy');
@@ -23,25 +29,48 @@ const ExportModal = ({ isOpen, onClose, exportedText }) => {
     }
   };
 
+  const handleFormatChange = (format) => {
+    setActiveFormat(format);
+    setCopied(false);
+  };
+
   if (!isOpen) return null;
 
   return (
     <div className="export-modal-overlay" onClick={onClose}>
       <div className="export-modal" onClick={(e) => e.stopPropagation()}>
         <div className="export-modal-header">
-          <h3>Export to VTT</h3>
+          <h3>Export Stat Block</h3>
           <button className="close-button" onClick={onClose}>×</button>
         </div>
 
         <div className="export-modal-content">
+          <div className="format-selector">
+            <button
+              className={`format-button ${activeFormat === 'vtt' ? 'active' : ''}`}
+              onClick={() => handleFormatChange('vtt')}
+            >
+              VTT Format
+            </button>
+            <button
+              className={`format-button ${activeFormat === 'customMarkdown' ? 'active' : ''}`}
+              onClick={() => handleFormatChange('customMarkdown')}
+            >
+              Custom Markdown
+            </button>
+          </div>
+
           <p className="export-instructions">
-            Copy this text and paste it into Foundry VTT's 5e Statblock Importer to create your monster:
+            {activeFormat === 'vtt' 
+              ? 'Copy this text and paste it into Foundry VTT\'s 5e Statblock Importer to create your monster:'
+              : 'Copy this custom markdown format for use in your target tool:'
+            }
           </p>
 
           <div className="export-text-container">
             <textarea
               className="export-text"
-              value={exportedText}
+              value={getCurrentExportText()}
               readOnly
               rows={20}
             />

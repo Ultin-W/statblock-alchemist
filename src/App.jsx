@@ -3,11 +3,12 @@ import MonsterForm from './components/MonsterForm/MonsterForm';
 import StatBlock from './components/StatBlock/StatBlock';
 import ExportModal from './components/ExportModal/ExportModal';
 import { VTTExporter } from './services/vttExporter';
+import { CustomMarkdownExporter } from './services/customMarkdownExporter';
 import './App.scss';
 
 function App() {
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
-  const [exportedText, setExportedText] = useState('');
+  const [exportData, setExportData] = useState({});
 
   const [formData, setFormData] = useState({
     // Basic Information
@@ -81,7 +82,12 @@ function App() {
 
   const handleExport = useCallback(() => {
     const vttText = VTTExporter.exportToVTT(formData);
-    setExportedText(vttText);
+    const customMarkdownText = CustomMarkdownExporter.exportToCustomMarkdown(formData);
+    
+    setExportData({
+      vtt: vttText,
+      customMarkdown: customMarkdownText
+    });
     setIsExportModalOpen(true);
   }, [formData]);
 
@@ -107,11 +113,11 @@ function App() {
         </div>
       </main>
 
-      <ExportModal
-        isOpen={isExportModalOpen}
-        onClose={handleCloseExportModal}
-        exportedText={exportedText}
-      />
+              <ExportModal
+          isOpen={isExportModalOpen}
+          onClose={handleCloseExportModal}
+          exportData={exportData}
+        />
     </div>
   );
 }
