@@ -40,7 +40,7 @@ const ExportModal = ({ isOpen, onClose, exportData }) => {
     <div className="export-modal-overlay" onClick={onClose}>
       <div className="export-modal" onClick={(e) => e.stopPropagation()}>
         <div className="export-modal-header">
-          <h3>Export Stat Block</h3>
+          <h3>Export</h3>
           <button className="close-button" onClick={onClose}>×</button>
         </div>
 
@@ -50,20 +50,20 @@ const ExportModal = ({ isOpen, onClose, exportData }) => {
               className={`format-button ${activeFormat === 'vtt' ? 'active' : ''}`}
               onClick={() => handleFormatChange('vtt')}
             >
-              VTT Format
+              Foundry VTT
             </button>
             <button
               className={`format-button ${activeFormat === 'customMarkdown' ? 'active' : ''}`}
               onClick={() => handleFormatChange('customMarkdown')}
             >
-              Custom Markdown
+              Homebrewery Markdown
             </button>
           </div>
 
-          <p className="export-instructions">
-            {activeFormat === 'vtt' 
+                    <p className="export-instructions">
+            {activeFormat === 'vtt'
               ? 'Copy this text and paste it into Foundry VTT\'s 5e Statblock Importer to create your monster:'
-              : 'Copy this custom markdown format for use in your target tool:'
+              : 'Copy this Homebrewery markdown format for use in your document:'
             }
           </p>
 

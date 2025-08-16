@@ -83,7 +83,7 @@ function App() {
   const handleExport = useCallback(() => {
     const vttText = VTTExporter.exportToVTT(formData);
     const customMarkdownText = CustomMarkdownExporter.exportToCustomMarkdown(formData);
-    
+
     setExportData({
       vtt: vttText,
       customMarkdown: customMarkdownText
@@ -100,7 +100,7 @@ function App() {
       <header>
         <h1>StatBlock Alchemist</h1>
         <button className="export-button" onClick={handleExport}>
-          Export to VTT
+          Export Options
         </button>
       </header>
 

@@ -147,13 +147,13 @@ export class CustomMarkdownExporter {
    */
   static formatAbilityScores(abilityScores) {
     const abilities = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
-    
+
     // Header row
     const headerRow = '|  STR  |  DEX  |  CON  |  INT  |  WIS  |  CHA  |';
-    
+
     // Alignment row
     const alignmentRow = '|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|';
-    
+
     // Values row
     const valueRow = abilities.map(ability => {
       const score = abilityScores[ability]?.score || 10;
@@ -196,8 +196,8 @@ export class CustomMarkdownExporter {
     }
 
     // Condition Immunities
-    const conditionImmunities = monster.damageRelations.conditionImmunities?.length > 0 
-      ? monster.damageRelations.conditionImmunities.join(', ') 
+    const conditionImmunities = monster.damageRelations.conditionImmunities?.length > 0
+      ? monster.damageRelations.conditionImmunities.join(', ')
       : 'None';
     stats.push(`**Condition Immunities** :: ${conditionImmunities}`);
 
@@ -219,7 +219,7 @@ export class CustomMarkdownExporter {
     const rating = challengeRating.rating || '0';
     const xp = challengeRating.xp || 0;
     const proficiencyBonus = this.calculateProficiencyBonus(rating);
-    
+
     return `**Challenge**            :: ${rating} (${xp} XP) {{bonus **Proficiency Bonus** +${proficiencyBonus}}}`;
   }
 
@@ -247,7 +247,7 @@ export class CustomMarkdownExporter {
     const formatted = [];
     traits.forEach((trait, index) => {
       if (!trait.name && !trait.description) return;
-      
+
       if (!trait.name) {
         formatted.push(trait.description);
       } else if (!trait.description) {
@@ -266,7 +266,7 @@ export class CustomMarkdownExporter {
           formatted.push(`***${trait.name}.*** ${trait.description}`);
         }
       }
-      
+
       // Add colon separator except for the last item
       if (index < traits.length - 1) {
         formatted.push(':');
@@ -285,7 +285,7 @@ export class CustomMarkdownExporter {
     const formatted = ['### Actions'];
     actions.forEach((action, index) => {
       if (!action.name && !action.description) return;
-      
+
       if (!action.name) {
         formatted.push(action.description);
       } else if (!action.description) {
@@ -293,7 +293,7 @@ export class CustomMarkdownExporter {
       } else {
         formatted.push(`***${action.name}.*** ${action.description}`);
       }
-      
+
       // Add colon separator except for the last item
       if (index < actions.length - 1) {
         formatted.push(':');
@@ -312,7 +312,7 @@ export class CustomMarkdownExporter {
     const formatted = ['### Reactions'];
     reactions.forEach((reaction, index) => {
       if (!reaction.name && !reaction.description) return;
-      
+
       if (!reaction.name) {
         formatted.push(reaction.description);
       } else if (!reaction.description) {
@@ -320,7 +320,7 @@ export class CustomMarkdownExporter {
       } else {
         formatted.push(`***${reaction.name}.*** ${reaction.description}`);
       }
-      
+
       // Add colon separator except for the last item
       if (index < reactions.length - 1) {
         formatted.push(':');
@@ -339,7 +339,7 @@ export class CustomMarkdownExporter {
     const formatted = ['### Legendary Actions'];
     legendaryActions.forEach((action, index) => {
       if (!action.name && !action.description) return;
-      
+
       if (!action.name) {
         formatted.push(action.description);
       } else if (!action.description) {
@@ -347,7 +347,7 @@ export class CustomMarkdownExporter {
       } else {
         formatted.push(`***${action.name}.*** ${action.description}`);
       }
-      
+
       // Add colon separator except for the last item
       if (index < legendaryActions.length - 1) {
         formatted.push(':');
@@ -366,7 +366,7 @@ export class CustomMarkdownExporter {
     const formatted = ['### Lair Actions'];
     lairActions.forEach((action, index) => {
       if (!action.name && !action.description) return;
-      
+
       if (!action.name) {
         formatted.push(action.description);
       } else if (!action.description) {
@@ -374,7 +374,7 @@ export class CustomMarkdownExporter {
       } else {
         formatted.push(`***${action.name}.*** ${action.description}`);
       }
-      
+
       // Add colon separator except for the last item
       if (index < lairActions.length - 1) {
         formatted.push(':');
@@ -393,7 +393,7 @@ export class CustomMarkdownExporter {
     const formatted = ['### Regional Effects'];
     regionalEffects.forEach((effect, index) => {
       if (!effect.name && !effect.description) return;
-      
+
       if (!effect.name) {
         formatted.push(effect.description);
       } else if (!effect.description) {
@@ -401,7 +401,7 @@ export class CustomMarkdownExporter {
       } else {
         formatted.push(`***${effect.name}.*** ${effect.description}`);
       }
-      
+
       // Add colon separator except for the last item
       if (index < regionalEffects.length - 1) {
         formatted.push(':');
