@@ -53,8 +53,13 @@ const MonsterForm = ({ formData, onFormDataChange }) => {
     };
   }, [watch]);
 
+  // Prevent form submission which causes focus issues
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className="monster-form">
+    <form className="monster-form" onSubmit={handleSubmit}>
       <BasicInfoSection register={register} setValue={setValue} />
       <ArmorSection register={register} setValue={setValue} />
       <HitPointsSection register={register} setValue={setValue} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 import './DynamicListSection.scss';
@@ -15,6 +15,7 @@ const DynamicListSection = ({
   type = 'textarea', // 'textarea' or 'input'
   singleField = false // New prop to control if we only show one field
 }) => {
+  const [announcement, setAnnouncement] = useState('');
   const handleItemChange = (index, field, value) => {
     const updatedItems = items.map((item, i) =>
       i === index ? { ...item, [field]: value } : item
@@ -24,11 +25,16 @@ const DynamicListSection = ({
 
   const handleAddItem = () => {
     onItemsChange([...items, { name: '', description: '' }]);
+    setAnnouncement(`New ${title.toLowerCase().slice(0, -1)} item added`);
+    setTimeout(() => setAnnouncement(''), 1000);
   };
 
   const handleRemoveItem = (index) => {
+    const itemName = items[index]?.name || `item ${index + 1}`;
     const updatedItems = items.filter((_, i) => i !== index);
     onItemsChange(updatedItems);
+    setAnnouncement(`${itemName ? `"${itemName}"` : `Item ${index + 1}`} removed from ${title.toLowerCase()}`);
+    setTimeout(() => setAnnouncement(''), 1000);
   };
 
   // Create a unique identifier for this section
@@ -36,6 +42,16 @@ const DynamicListSection = ({
 
   return (
     <FieldGroup title={title} defaultExpanded={defaultExpanded}>
+      {/* Live region for announcements */}
+      <div
+        aria-live="polite"
+        aria-atomic="true"
+        className="visually-hidden"
+        role="status"
+      >
+        {announcement}
+      </div>
+
       {items.map((item, idx) => (
         <div key={`${sectionId}-${idx}`} className="dynamic-list-item">
           <InputField
@@ -69,13 +85,23 @@ const DynamicListSection = ({
               )}
             </div>
           )}
-          <button type="button" onClick={() => handleRemoveItem(idx)} className="remove-button">
-            -
+          <button
+            type="button"
+            onClick={() => handleRemoveItem(idx)}
+            className="remove-button"
+            aria-label={`Remove ${item.name || `${nameLabel} ${idx + 1}`} from ${title.toLowerCase()}`}
+          >
+            ×
           </button>
         </div>
       ))}
-      <button type="button" onClick={handleAddItem} className="add-button">
-        +
+      <button
+        type="button"
+        onClick={handleAddItem}
+        className="add-button"
+        aria-label={`Add new ${title.toLowerCase().slice(0, -1)} item`}
+      >
+        + Add {title.slice(0, -1)}
       </button>
     </FieldGroup>
   );

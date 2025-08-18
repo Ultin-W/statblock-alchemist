@@ -20,7 +20,7 @@ const FieldGroup = ({ title, children, defaultExpanded = false }) => {
 
   return (
     <fieldset className="field-group">
-      <div className="field-group__header">
+      <legend className="field-group__legend">
         <button
           type="button"
           className="field-group__toggle"
@@ -28,9 +28,14 @@ const FieldGroup = ({ title, children, defaultExpanded = false }) => {
           aria-expanded={expanded}
           aria-controls={sectionId}
         >
-          {expanded ? '▼' : '▶'} {title}
+          <span className="field-group__toggle-icon">
+            {expanded ? '▼' : '▶'}
+          </span>
+          <span className="field-group__toggle-text">
+            {title}
+          </span>
         </button>
-      </div>
+      </legend>
 
       <div
         id={sectionId}
