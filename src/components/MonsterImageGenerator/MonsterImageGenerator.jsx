@@ -248,11 +248,34 @@ const MonsterImageGenerator = ({ monster }) => {
     setActivePrompt('');
   }, [imagePrompt]);
 
+  // Generate descriptive alt text for monster images
+  const generateAltText = () => {
+    if (!monster?.name || monster.name === 'Unnamed Creature') {
+      return 'Generated fantasy monster illustration';
+    }
+
+    let altText = `Generated illustration of ${monster.name}`;
+
+    if (monster.size && monster.creatureType) {
+      altText += `, a ${monster.size.toLowerCase()} ${monster.creatureType.toLowerCase()}`;
+    } else if (monster.creatureType) {
+      altText += `, a ${monster.creatureType.toLowerCase()}`;
+    } else if (monster.size) {
+      altText += `, a ${monster.size.toLowerCase()} creature`;
+    }
+
+    if (monster.alignment) {
+      altText += ` of ${monster.alignment.toLowerCase()} alignment`;
+    }
+
+    return altText;
+  };
+
   // Dragon Placeholder Component
   const PlaceholderImage = () => (
     <img
       src={dragonPlaceholder}
-      alt="Monster placeholder"
+      alt="Dragon head placeholder - a stylized icon representing a fantasy creature. Click 'Generate Image' to create a custom illustration for your monster."
       className="monster-placeholder-img"
     />
   );
@@ -264,7 +287,7 @@ const MonsterImageGenerator = ({ monster }) => {
           <>
             <img
               src={imageUrl}
-              alt={monster?.name || 'Monster'}
+              alt={generateAltText()}
               className="monster-image"
               onLoad={handleImageLoad}
               onError={handleImageError}
@@ -275,20 +298,31 @@ const MonsterImageGenerator = ({ monster }) => {
                 className="generate-image-btn refine-btn"
                 onClick={handleRefineClick}
                 type="button"
+                aria-label="Refine the generated monster image with custom prompt"
               >
                 Refine Image
               </button>
             )}
             {isGenerating && (
-              <div className="image-placeholder">
-                <div className="loading-spinner"></div>
+              <div
+                className="image-placeholder"
+                role="status"
+                aria-live="polite"
+                aria-label="Image generation in progress"
+              >
+                <div className="loading-spinner" aria-hidden="true"></div>
                 <p>Generating your monster image...</p>
               </div>
             )}
           </>
         ) : isGenerating ? (
-          <div className="image-placeholder">
-            <div className="loading-spinner"></div>
+          <div
+            className="image-placeholder"
+            role="status"
+            aria-live="polite"
+            aria-label="Image generation in progress"
+          >
+            <div className="loading-spinner" aria-hidden="true"></div>
             <p>Generating your monster image...</p>
           </div>
         ) : (
@@ -300,6 +334,8 @@ const MonsterImageGenerator = ({ monster }) => {
                 onClick={handleGenerateImage}
                 type="button"
                 disabled={isGenerating}
+                aria-label={`Generate AI image for ${monster?.name || 'your monster'} using creature details`}
+                aria-describedby="image-generation-help"
               >
                 {isGenerating ? 'Generating...' : 'Generate Image'}
               </button>
@@ -308,23 +344,39 @@ const MonsterImageGenerator = ({ monster }) => {
         )}
       </div>
 
+      {/* Help text for image generation */}
+      {hasMonsterData && !shouldGenerateImage && (
+        <div id="image-generation-help" className="visually-hidden">
+          AI will generate an image based on your monster's size, type, alignment, abilities, and other characteristics
+        </div>
+      )}
+
       {/* Refinement Interface */}
       {showRefinement && (
-        <div className="refinement-interface">
-          <h4>Refine Your Image</h4>
+        <div className="refinement-interface" role="dialog" aria-labelledby="refinement-title">
+          <h4 id="refinement-title">Refine Your Image</h4>
           <p>Modify the prompt to refine your image:</p>
+          <label htmlFor="refinement-textarea" className="visually-hidden">
+            Custom refinement prompt for image generation
+          </label>
           <textarea
+            id="refinement-textarea"
             value={refinementPrompt}
             onChange={(e) => setRefinementPrompt(e.target.value)}
             className="refinement-prompt"
             rows="4"
             placeholder="Add details to refine your image..."
+            aria-describedby="refinement-help"
           />
+          <div id="refinement-help" className="visually-hidden">
+            Describe specific details you want to add or modify in the generated monster image
+          </div>
           <div className="refinement-buttons">
             <button
               className="refinement-btn generate"
               onClick={handleRefinementGenerate}
               disabled={!refinementPrompt.trim() || isGenerating}
+              aria-label="Generate new image with refined prompt"
             >
               Generate Refined Image
             </button>
@@ -332,6 +384,7 @@ const MonsterImageGenerator = ({ monster }) => {
               className="refinement-btn cancel"
               onClick={handleCancelRefinement}
               disabled={isGenerating}
+              aria-label="Cancel image refinement"
             >
               Cancel
             </button>
@@ -341,7 +394,7 @@ const MonsterImageGenerator = ({ monster }) => {
 
       {/* Show prompt info when generating or generated */}
       {shouldGenerateImage && (
-        <div className="prompt-info">
+        <div className="prompt-info" role="status" aria-label="Image generation prompt">
           <small>Prompt: {activePrompt || imagePrompt}</small>
         </div>
       )}
