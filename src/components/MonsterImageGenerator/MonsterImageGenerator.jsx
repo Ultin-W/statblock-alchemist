@@ -214,7 +214,13 @@ const MonsterImageGenerator = ({ monster }) => {
 
   const handleImageError = () => {
     setIsGenerating(false);
-    // Could add error handling here if needed
+    // Announce error to screen readers
+    const announcement = document.createElement('div');
+    announcement.setAttribute('aria-live', 'assertive');
+    announcement.className = 'visually-hidden';
+    announcement.textContent = 'Image generation failed. Please try again.';
+    document.body.appendChild(announcement);
+    setTimeout(() => document.body.removeChild(announcement), 3000);
   };
 
   const handleRefineClick = () => {

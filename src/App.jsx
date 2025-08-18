@@ -99,9 +99,16 @@ function App() {
     <div className="App">
       <header>
         <h1>StatBlock Alchemist</h1>
-        <button className="export-button" onClick={handleExport}>
+        <button
+          className="export-button"
+          onClick={handleExport}
+          aria-describedby="export-help"
+        >
           Export Options
         </button>
+        <div id="export-help" className="visually-hidden">
+          Export your monster to Foundry VTT or Homebrewery Markdown formats
+        </div>
       </header>
 
       <main className="app-main">
