@@ -7,8 +7,6 @@ const InputField = ({ label, placeholder, type = 'text', setValue, ...registerPr
   const htmlSafeId = rhfName?.replace(/\./g, '-');
 
   // State for clear button visibility
-  const [isFocused, setIsFocused] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const [hasValue, setHasValue] = useState(false);
 
   // Check initial value from React Hook Form
@@ -33,12 +31,11 @@ const InputField = ({ label, placeholder, type = 'text', setValue, ...registerPr
     }
   }, [type, htmlSafeId]);
 
-  // Determine if clear button should be visible
-  const shouldShowClearButton = hasValue && (isFocused || isHovered);
+      // Show clear button when field has content
+  const shouldShowClearButton = hasValue;
 
   // Event handlers
   const handleFocus = (e) => {
-    setIsFocused(true);
     // Call original onFocus if it exists
     if (registerProps.onFocus) {
       registerProps.onFocus(e);
@@ -46,12 +43,12 @@ const InputField = ({ label, placeholder, type = 'text', setValue, ...registerPr
   };
 
   const handleBlur = (e) => {
-    setIsFocused(false);
     // Call original onBlur if it exists
     if (registerProps.onBlur) {
       registerProps.onBlur(e);
     }
   };
+
 
     const handleChange = (e) => {
     // Track if field has content - for number inputs, also check if user is typing
@@ -64,13 +61,7 @@ const InputField = ({ label, placeholder, type = 'text', setValue, ...registerPr
     }
   };
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
 
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
 
   const handleClear = () => {
     if (setValue && rhfName) {
@@ -80,11 +71,7 @@ const InputField = ({ label, placeholder, type = 'text', setValue, ...registerPr
   };
 
   return (
-    <div
-      className="input-field"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className="input-field">
       <label htmlFor={htmlSafeId}>{label}</label>
       <div className="input-wrapper">
         <input
@@ -96,13 +83,13 @@ const InputField = ({ label, placeholder, type = 'text', setValue, ...registerPr
           onBlur={handleBlur}
           onChange={handleChange}
         />
-        {shouldShowClearButton && (
+                        {shouldShowClearButton && (
           <button
             type="button"
             className="input-clear-button"
             onClick={handleClear}
             aria-label={`Clear ${label}`}
-            tabIndex="-1"
+            title={`Clear ${label}`}
           >
             ×
           </button>
