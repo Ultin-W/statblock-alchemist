@@ -28,7 +28,7 @@ const MonsterForm = ({ formData, onFormDataChange }) => {
   }, [onFormDataChange]);
 
   // Use React Hook Form as the single source of truth
-  const { register, control, watch, setValue } = useForm({
+  const { register, control, watch, setValue, formState: { errors } } = useForm({
     defaultValues: formData,
     mode: 'onChange'
   });
@@ -60,22 +60,22 @@ const MonsterForm = ({ formData, onFormDataChange }) => {
 
   return (
     <form className="monster-form" onSubmit={handleSubmit}>
-      <BasicInfoSection register={register} setValue={setValue} />
-      <ArmorSection register={register} setValue={setValue} />
-      <HitPointsSection register={register} setValue={setValue} />
-      <SpeedSection register={register} setValue={setValue} />
-      <AbilityScoresSection register={register} setValue={setValue} />
-      <SavingThrowsSkillsSection control={control} setValue={setValue} />
-      <ResistancesImmunitiesSection control={control} setValue={setValue} />
-      <SensesSection control={control} setValue={setValue} />
-      <LanguagesSection control={control} setValue={setValue} />
-      <ChallengeSection register={register} setValue={setValue} />
-      <TraitsSection control={control} setValue={setValue} />
-      <ActionsSection control={control} setValue={setValue} />
-      <ReactionsSection control={control} setValue={setValue} />
-      <LegendaryActionsSection control={control} setValue={setValue} />
-      <LairActionsSection control={control} setValue={setValue} />
-      <RegionalEffectsSection control={control} setValue={setValue} />
+      <BasicInfoSection register={register} setValue={setValue} errors={errors} />
+      <ArmorSection register={register} setValue={setValue} errors={errors} />
+      <HitPointsSection register={register} setValue={setValue} errors={errors} />
+      <SpeedSection register={register} setValue={setValue} errors={errors} />
+      <AbilityScoresSection register={register} setValue={setValue} errors={errors} />
+      <SavingThrowsSkillsSection control={control} setValue={setValue} errors={errors} />
+      <ResistancesImmunitiesSection control={control} setValue={setValue} errors={errors} />
+      <SensesSection control={control} setValue={setValue} errors={errors} />
+      <LanguagesSection control={control} setValue={setValue} errors={errors} />
+      <ChallengeSection register={register} setValue={setValue} errors={errors} />
+      <TraitsSection control={control} setValue={setValue} errors={errors} />
+      <ActionsSection control={control} setValue={setValue} errors={errors} />
+      <ReactionsSection control={control} setValue={setValue} errors={errors} />
+      <LegendaryActionsSection control={control} setValue={setValue} errors={errors} />
+      <LairActionsSection control={control} setValue={setValue} errors={errors} />
+      <RegionalEffectsSection control={control} setValue={setValue} errors={errors} />
     </form>
   );
 };

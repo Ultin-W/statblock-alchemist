@@ -2,7 +2,7 @@ import React from 'react';
 import InputField from '../InputField/InputField';
 import FieldGroup from '../FieldGroup/FieldGroup';
 
-const BasicInfoSection = ({ register, setValue }) => {
+const BasicInfoSection = ({ register, setValue, errors }) => {
   return (
     <FieldGroup title="Basic Information" defaultExpanded={true}>
       <InputField

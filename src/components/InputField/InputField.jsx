@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './InputField.scss';
 
-const InputField = ({ label, placeholder, type = 'text', setValue, ...registerProps }) => {
+const InputField = ({ label, placeholder, type = 'text', setValue, error, ...registerProps }) => {
   // Use React Hook Form's name for the HTML ID
   const rhfName = registerProps.name;
   const htmlSafeId = rhfName?.replace(/\./g, '-');
@@ -61,6 +61,27 @@ const InputField = ({ label, placeholder, type = 'text', setValue, ...registerPr
     }
   };
 
+  const handleInput = (e) => {
+    // For number inputs, check if browser detected invalid input
+    if (type === 'number' && e.target.validity?.badInput) {
+      // Force trigger validation by calling React Hook Form's trigger
+      // This will force the validation to run and show our custom error
+      setTimeout(() => {
+        if (registerProps.onChange) {
+          // Create a fake event to trigger validation
+          const fakeEvent = {
+            target: {
+              value: e.target.value,
+              name: e.target.name,
+              validity: e.target.validity
+            }
+          };
+          registerProps.onChange(fakeEvent);
+        }
+      }, 0);
+    }
+  };
+
 
 
   const handleClear = () => {
@@ -70,8 +91,10 @@ const InputField = ({ label, placeholder, type = 'text', setValue, ...registerPr
     }
   };
 
+    const errorId = error ? `${htmlSafeId}-error` : undefined;
+
   return (
-    <div className="input-field">
+    <div className={`input-field ${error ? 'input-field--error' : ''}`}>
       <label htmlFor={htmlSafeId}>{label}</label>
       <div className="input-wrapper">
         <input
@@ -82,8 +105,11 @@ const InputField = ({ label, placeholder, type = 'text', setValue, ...registerPr
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
+          onInput={handleInput}
+          aria-invalid={error ? 'true' : 'false'}
+          aria-describedby={errorId}
         />
-                        {shouldShowClearButton && (
+        {shouldShowClearButton && (
           <button
             type="button"
             className="input-clear-button"
@@ -95,6 +121,11 @@ const InputField = ({ label, placeholder, type = 'text', setValue, ...registerPr
           </button>
         )}
       </div>
+      {error && (
+        <div id={errorId} className="input-error" role="alert">
+          {error.message}
+        </div>
+      )}
     </div>
   );
 };
