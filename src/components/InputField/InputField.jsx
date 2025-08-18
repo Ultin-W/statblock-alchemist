@@ -102,6 +102,7 @@ const InputField = ({ label, placeholder, type = 'text', setValue, ...registerPr
             className="input-clear-button"
             onClick={handleClear}
             aria-label={`Clear ${label}`}
+            tabIndex="-1"
           >
             ×
           </button>
