@@ -105,12 +105,14 @@ function App() {
       </header>
 
       <main className="app-main">
-        <div className="form-section">
+        <section className="form-section">
+          <h2 className="visually-hidden">Monster Creator</h2>
           <MonsterForm formData={formData} onFormDataChange={handleFormDataChange} />
-        </div>
-        <div className="statblock-section">
+        </section>
+        <section className="statblock-section">
+          <h2 className="visually-hidden">Monster Preview</h2>
           <StatBlock monsterData={formData} />
-        </div>
+        </section>
       </main>
 
               <ExportModal

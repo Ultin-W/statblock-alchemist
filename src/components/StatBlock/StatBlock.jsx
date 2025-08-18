@@ -101,7 +101,7 @@ const StatBlock = ({ monsterData }) => {
     <div className="stat-block">
       {/* Header */}
       <div className="stat-block-header">
-        <h1 className="creature-name">{monster.name}</h1>
+        <h2 className="creature-name">{monster.name}</h2>
         {monster.tag && <div className="creature-tag">{monster.tag}</div>}
       </div>
 
