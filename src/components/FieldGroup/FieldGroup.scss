@@ -1,45 +1,51 @@
 .field-group {
-  margin-bottom: 2rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  margin: 1rem 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0 0 8px 8px;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
   overflow: hidden;
 
+  &:has(:focus-visible) {
+    box-shadow: 0 0 0 3px rgba($color-accent-amber, 0.35);
+    border-color: $color-oxblood;
+  }
+
   &__legend {
+    margin: 0; padding: 0;
     width: 100%;
-    padding: 0;
-    margin: 0;
-    background-color: #f5f5f5;
-    border-bottom: 1px solid #ddd;
   }
 
   &__toggle {
-    width: 100%;
-    padding: 1rem;
-    background: none;
-    border: none;
-    text-align: left;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    color: #2c3e50;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: .5rem;
+    width: 100%;
+    padding: .875rem 1rem;
+    background: linear-gradient(#fff, #fafafa);
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+    font-family: $font-form-heading;
+    font-weight: 600;
+    color: $color-grey-text;
+    border-bottom: 1px solid $color-grey-border;
 
     &:hover {
-      background-color: #e9ecef;
+      background: #f7f7f7;
     }
 
-    &:focus {
-      outline: 2px solid #007bff;
-      outline-offset: -2px;
+    &:focus-visible {
+      outline: 3px solid $color-accent-amber;
+      outline-offset: -3px;
     }
   }
 
   &__toggle-icon {
-    flex-shrink: 0;
-    width: 1rem;
-    text-align: center;
+    display: inline-block;
+    transition: transform 180ms ease;
+    font-size: .9rem;
   }
 
   &__toggle-text {
@@ -48,8 +54,12 @@
 
   &__content {
     padding: 1.5rem;
-    background-color: #fff;
+    background-color: $color-parchment;
     transition: all 0.3s ease-in-out;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
 
     &--expanded {
       max-height: none;

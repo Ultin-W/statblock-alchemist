@@ -1,40 +1,49 @@
+@use "sass:color";
+
 .input-field {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: .375rem;
 
   label {
-    display: block;
-    margin-bottom: 0.5rem;
+    font-family: $font-form-heading;
     font-weight: 600;
-    color: #333;
+    font-size: .95rem;
+    color: $color-grey-text;
   }
 
   .input-wrapper {
     position: relative;
     display: flex;
-    width: 100%;
   }
 
   input {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    appearance: none;
+    background: #fff;
+    border: 1px solid $color-grey-border;
+    border-radius: 6px;
+    padding: .625rem .75rem;
+    font-family: $font-form-body;
     font-size: 1rem;
-    transition: border-color 0.2s ease;
+    line-height: 1.4;
+    color: $color-grey-text;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
 
     // Make room for clear button
     padding-right: 2.5rem;
 
-    &:focus {
-      outline: none;
-      border-color: #007bff;
-      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+    &::placeholder {
+      color: rgba($color-grey-text, 0.45);
     }
 
     &:hover {
-      border-color: #999;
+      border-color: color.adjust($color-grey-border, $lightness: -8%);
+    }
+
+    &:focus {
+      outline: 3px solid $color-accent-amber;
+      border-color: $color-oxblood;
     }
   }
 
@@ -72,11 +81,11 @@
   // Error state
   &--error {
     .input-wrapper input {
-      border-color: #dc3545;
+      border-color: #b91c1c;
+      background: #fff7f7;
 
       &:focus {
-        border-color: #dc3545;
-        box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.25);
+        outline-color: #fca5a5;
       }
     }
   }
