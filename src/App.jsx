@@ -5,6 +5,7 @@ import ExportModal from './components/ExportModal/ExportModal';
 import { VTTExporter } from './services/vttExporter';
 import { CustomMarkdownExporter } from './services/customMarkdownExporter';
 import './App.scss';
+import './styles/header.scss';
 
 function App() {
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
