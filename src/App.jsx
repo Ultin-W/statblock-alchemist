@@ -98,20 +98,22 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>StatBlock Alchemist</h1>
-        <button
-          className="export-button"
-          onClick={handleExport}
-          aria-describedby="export-help"
-        >
-          Export Options
-        </button>
-        <div id="export-help" className="visually-hidden">
-          Export your monster to Foundry VTT or Homebrewery Markdown formats
+        <div className="header-content container">
+          <h1>StatBlock Alchemist</h1>
+          <button
+            className="export-button"
+            onClick={handleExport}
+            aria-describedby="export-help"
+          >
+            Export Options
+          </button>
+          <div id="export-help" className="visually-hidden">
+            Export your monster to Foundry VTT or Homebrewery Markdown formats
+          </div>
         </div>
       </header>
 
-      <main className="app-main">
+      <main className="app-main container">
         <section className="form-section">
           <h2 className="visually-hidden">Monster Creator</h2>
           <MonsterForm formData={formData} onFormDataChange={handleFormDataChange} />
