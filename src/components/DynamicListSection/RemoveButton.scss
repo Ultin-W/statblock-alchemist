@@ -1,0 +1,10 @@
+.remove-button {
+  @include button-small;
+
+  &::before {
+    content: "×";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

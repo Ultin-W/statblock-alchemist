@@ -1,4 +1,5 @@
 import React from 'react';
+import './AddButton.scss';
 
 const AddButton = ({ onClick, label = "Add Item" }) => {
   return (

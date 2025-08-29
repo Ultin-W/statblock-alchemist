@@ -4,11 +4,12 @@
   display: grid;
   grid-template-rows: auto auto;
   gap: .375rem;
+  margin-bottom: 1em;
 
   label {
     font-family: $font-form-heading;
     font-weight: 600;
-    font-size: .95rem;
+    font-size: 0.875em;
     color: $color-grey-text;
   }
 

@@ -1,0 +1,43 @@
+@use "@/styles/variables.scss" as *;
+
+@mixin button-base {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  font-family: $font-form-heading;
+  font-weight: 500;
+  font-size: 1em;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  border-radius: 6px;
+  line-height: 1;
+  background-color: $color-oxblood;
+  color: $color-parchment;
+  padding: 0.5em 1em;
+  gap:0.5em;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &:focus,
+  &:hover {
+    background-color: rgba($color-accent-amber, 0.95);
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  padding: 1em 1.5em;
+}
+
+@mixin button-small {
+  @include button-base;
+  font-size: 0.8rem;
+  padding: 0.5em 0.75em;
+}

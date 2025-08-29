@@ -93,6 +93,10 @@
     display: block;
   }
 
+  .remove-button {
+    margin-bottom: 10px;
+  }
+
   &.active {
     .field-group {
       &__toggle {
