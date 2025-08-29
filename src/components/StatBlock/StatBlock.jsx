@@ -23,64 +23,106 @@ const StatBlock = ({ monsterData }) => {
     );
   };
 
-  const renderProficiencies = () => {
+    const renderProficiencies = () => {
     const { savingThrows, skills } = monster.proficiencies;
-    const proficiencyItems = [];
+    const elements = [];
 
-    if (savingThrows.length > 0) {
-      proficiencyItems.push(`Saving Throws ${savingThrows.join(', ')}`);
+    // Check if there are any saving throw items in the original form data (even if empty)
+    const hasSavingThrowFields = monsterData?.proficiencies?.savingThrows?.length > 0;
+    // Check if there are any skill items in the original form data (even if empty)
+    const hasSkillFields = monsterData?.proficiencies?.skills?.length > 0;
+
+    if (hasSavingThrowFields) {
+      const savingThrowsText = savingThrows.length > 0 ? savingThrows.join(', ') : '—';
+      elements.push(
+        <div key="saving-throws" className="stat-line">
+          <strong>Saving Throws</strong> {savingThrowsText}
+        </div>
+      );
     }
 
-    if (skills.length > 0) {
-      proficiencyItems.push(`Skills ${skills.join(', ')}`);
+    if (hasSkillFields) {
+      const skillsText = skills.length > 0 ? skills.join(', ') : '—';
+      elements.push(
+        <div key="skills" className="stat-line">
+          <strong>Skills</strong> {skillsText}
+        </div>
+      );
     }
 
-    return proficiencyItems.length > 0 ? (
-      <div className="stat-line">
-        <strong>{proficiencyItems.join('; ')}</strong>
-      </div>
-    ) : null;
+    return elements.length > 0 ? <>{elements}</> : null;
   };
 
   const renderDamageRelations = () => {
     const { vulnerabilities, resistances, immunities, conditionImmunities } = monster.damageRelations;
-    const damageItems = [];
+    const elements = [];
 
-    if (vulnerabilities.length > 0) {
-      damageItems.push(`Damage Vulnerabilities ${vulnerabilities.join(', ')}`);
+    // Check if there are any form fields for each damage relation type
+    const hasVulnerabilityFields = monsterData?.resistances?.vulnerabilities?.length > 0;
+    const hasResistanceFields = monsterData?.resistances?.resistances?.length > 0;
+    const hasImmunityFields = monsterData?.resistances?.immunities?.length > 0;
+    const hasConditionImmunityFields = monsterData?.resistances?.conditionImmunities?.length > 0;
+
+    if (hasVulnerabilityFields) {
+      const vulnerabilitiesText = vulnerabilities.length > 0 ? vulnerabilities.join(', ') : '—';
+      elements.push(
+        <div key="vulnerabilities" className="stat-line">
+          <strong>Damage Vulnerabilities</strong> {vulnerabilitiesText}
+        </div>
+      );
     }
 
-    if (resistances.length > 0) {
-      damageItems.push(`Damage Resistances ${resistances.join(', ')}`);
+    if (hasResistanceFields) {
+      const resistancesText = resistances.length > 0 ? resistances.join(', ') : '—';
+      elements.push(
+        <div key="resistances" className="stat-line">
+          <strong>Damage Resistances</strong> {resistancesText}
+        </div>
+      );
     }
 
-    if (immunities.length > 0) {
-      damageItems.push(`Damage Immunities ${immunities.join(', ')}`);
+    if (hasImmunityFields) {
+      const immunitiesText = immunities.length > 0 ? immunities.join(', ') : '—';
+      elements.push(
+        <div key="immunities" className="stat-line">
+          <strong>Damage Immunities</strong> {immunitiesText}
+        </div>
+      );
     }
 
-    if (conditionImmunities.length > 0) {
-      damageItems.push(`Condition Immunities ${conditionImmunities.join(', ')}`);
+    if (hasConditionImmunityFields) {
+      const conditionImmunitiesText = conditionImmunities.length > 0 ? conditionImmunities.join(', ') : '—';
+      elements.push(
+        <div key="condition-immunities" className="stat-line">
+          <strong>Condition Immunities</strong> {conditionImmunitiesText}
+        </div>
+      );
     }
 
-    return damageItems.map((item, index) => (
-      <div key={index} className="stat-line">
-        <strong>{item}</strong>
-      </div>
-    ));
+    return elements.length > 0 ? <>{elements}</> : null;
   };
 
-  const renderFeatures = (features, title) => {
-    if (!features || features.length === 0) return null;
+  const renderFeatures = (features, title, formFieldName) => {
+    // Check if there are any form fields for this feature type
+    const hasFormFields = monsterData?.[formFieldName]?.length > 0;
+
+    if (!hasFormFields) return null;
 
     return (
       <div className="features-section">
         <h3 className="features-title">{title}</h3>
-        {features.map((feature, index) => (
-          <div key={index} className="feature">
-            {feature.name && <strong className="feature-name">{feature.name}.</strong>}
-            {feature.description && <span className="feature-description"> {feature.description}</span>}
+        {features && features.length > 0 ? (
+          features.map((feature, index) => (
+            <div key={index} className="feature">
+              {feature.name && <strong className="feature-name">{feature.name}.</strong>}
+              {feature.description && <span className="feature-description"> {feature.description}</span>}
+            </div>
+          ))
+        ) : (
+          <div className="feature">
+            <span className="feature-description">—</span>
           </div>
-        ))}
+        )}
       </div>
     );
   };
@@ -142,16 +184,18 @@ const StatBlock = ({ monsterData }) => {
       {renderDamageRelations()}
 
       {/* Senses */}
-      {monster.senses.length > 0 && (
+      {monsterData?.senses?.length > 0 && (
         <div className="stat-line">
-          <strong>Senses</strong> {MonsterDataFormatter.getSensesString(monster.senses)}
+          <strong>Senses</strong> {monster.senses.length > 0 ? MonsterDataFormatter.getSensesString(monster.senses) : '—'}
         </div>
       )}
 
       {/* Languages */}
-      <div className="stat-line">
-        <strong>Languages</strong> {MonsterDataFormatter.getLanguagesString(monster.languages)}
-      </div>
+      {monsterData?.languages?.length > 0 && (
+        <div className="stat-line">
+          <strong>Languages</strong> {monster.languages.length > 0 ? MonsterDataFormatter.getLanguagesString(monster.languages) : '—'}
+        </div>
+      )}
 
       {/* Challenge Rating */}
       <div className="stat-line">
@@ -161,12 +205,12 @@ const StatBlock = ({ monsterData }) => {
       <div className="stat-block-divider"></div>
 
       {/* Features */}
-      {renderFeatures(monster.features.traits, 'Traits')}
-      {renderFeatures(monster.features.actions, 'Actions')}
-      {renderFeatures(monster.features.reactions, 'Reactions')}
-      {renderFeatures(monster.features.legendaryActions, 'Legendary Actions')}
-      {renderFeatures(monster.features.lairActions, 'Lair Actions')}
-      {renderFeatures(monster.features.regionalEffects, 'Regional Effects')}
+      {renderFeatures(monster.features.traits, 'Traits', 'traits')}
+      {renderFeatures(monster.features.actions, 'Actions', 'actions')}
+      {renderFeatures(monster.features.reactions, 'Reactions', 'reactions')}
+      {renderFeatures(monster.features.legendaryActions, 'Legendary Actions', 'legendaryActions')}
+      {renderFeatures(monster.features.lairActions, 'Lair Actions', 'lairActions')}
+      {renderFeatures(monster.features.regionalEffects, 'Regional Effects', 'regionalEffects')}
     </div>
   );
 };

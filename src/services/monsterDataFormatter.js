@@ -157,7 +157,9 @@ export class MonsterDataFormatter {
       .map(item => {
         if (typeof item === 'string') return item;
         if (typeof item === 'object' && item !== null) {
-          return item.name || item.value || item.label || String(item);
+          // Extract the actual value, don't fall back to String(item) if empty
+          const value = item.name || item.value || item.label;
+          return value !== undefined ? value : '';
         }
         return String(item);
       })
