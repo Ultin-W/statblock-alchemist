@@ -3,9 +3,9 @@
   border: 2px solid #922610;
   border-radius: 8px;
   padding: 20px;
-  font-family: 'Georgia', serif;
+  font-family: $font-preview-body;
   color: #922610;
-  max-width: 400px;
+  max-width: 500px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   line-height: 1.4;
 
@@ -28,7 +28,7 @@
     margin-bottom: 8px;
 
     .creature-name {
-      font-size: 24px;
+      font-size: 1.5em;
       font-weight: bold;
       margin: 0;
       color: #922610;
@@ -38,7 +38,7 @@
     }
 
     .creature-tag {
-      font-size: 12px;
+      font-size: 0.75em;
       font-style: italic;
       color: #666;
       margin-top: 4px;
@@ -49,7 +49,7 @@
   .creature-type {
     text-align: center;
     margin-bottom: 12px;
-    font-size: 14px;
+    font-size: 0.875em;
     color: #922610;
   }
 
@@ -57,18 +57,6 @@
   .stat-block-divider {
     border-bottom: 2px solid #922610;
     margin: 12px 0;
-  }
-
-  // Basic Stats
-  .basic-stats {
-    .stat-line {
-      margin-bottom: 4px;
-      font-size: 14px;
-
-      strong {
-        font-weight: bold;
-      }
-    }
   }
 
   // Ability Scores
@@ -83,19 +71,19 @@
       min-width: 0;
 
       .ability-name {
-        font-size: 11px;
+        font-size: 1.125em;
         font-weight: bold;
         color: #922610;
       }
 
       .ability-score {
-        font-size: 16px;
+        font-size: 1.25em;
         font-weight: bold;
         margin: 2px 0;
       }
 
       .ability-modifier {
-        font-size: 12px;
+        font-size: 0.875em;
         color: #666;
       }
     }
@@ -104,7 +92,7 @@
   // General stat lines
   .stat-line {
     margin-bottom: 6px;
-    font-size: 14px;
+    font-size: 1em;
 
     strong {
       font-weight: bold;
@@ -117,7 +105,7 @@
     margin-top: 16px;
 
     .features-title {
-      font-size: 16px;
+      font-size: 1em;
       font-weight: bold;
       color: #922610;
       margin: 0 0 8px 0;
@@ -127,7 +115,7 @@
 
     .feature {
       margin-bottom: 12px;
-      font-size: 14px;
+      font-size: 0.875em;
       text-align: justify;
 
       .feature-name {
@@ -149,19 +137,19 @@
     max-width: 100%;
 
     .creature-name {
-      font-size: 20px;
+      font-size: 1.25em;
     }
 
     .ability-scores {
       .ability {
         .ability-name {
-          font-size: 10px;
+          font-size: 0.625em;
         }
         .ability-score {
-          font-size: 14px;
+          font-size: 0.875em;
         }
         .ability-modifier {
-          font-size: 11px;
+          font-size: 0.6875em;
         }
       }
     }
