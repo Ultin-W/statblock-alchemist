@@ -28,10 +28,9 @@ const FieldGroup = ({ title, children, defaultExpanded = false }) => {
           aria-expanded={expanded}
           aria-controls={sectionId}
         >
-          <span className="field-group__toggle-icon">
-            {expanded ? '▼' : '▶'}
+          <span className="field-group__toggle__icon">
           </span>
-          <span className="field-group__toggle-text">
+          <span className="field-group__toggle__text">
             {title}
           </span>
         </button>

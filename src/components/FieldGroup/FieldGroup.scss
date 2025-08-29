@@ -2,9 +2,8 @@
   margin: 1rem 0;
   padding: 0;
   border: 0;
-  border-radius: 0 0 8px 8px;
+  border-radius: 8px;
   background: #fff;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
   overflow: hidden;
 
   &:has(:focus-visible) {
@@ -13,24 +12,27 @@
   }
 
   &__legend {
-    margin: 0; padding: 0;
+    margin: 0;
+    padding: 0;
     width: 100%;
+    display: contents;
   }
 
   &__toggle {
+    padding: 1.25em 1.5em;
     display: flex;
     align-items: center;
-    gap: .5rem;
+    gap: 1.125em;
     width: 100%;
-    padding: .875rem 1rem;
-    background: linear-gradient(#fff, #fafafa);
     border: 0;
     text-align: left;
     cursor: pointer;
     font-family: $font-form-heading;
     font-weight: 600;
+    font-size: 1.125em;
     color: $color-grey-text;
     border-bottom: 1px solid $color-grey-border;
+    background: transparent;
 
     &:hover {
       background: #f7f7f7;
@@ -40,21 +42,31 @@
       outline: 3px solid $color-accent-amber;
       outline-offset: -3px;
     }
-  }
 
-  &__toggle-icon {
-    display: inline-block;
-    transition: transform 180ms ease;
-    font-size: .9rem;
-  }
+    &__icon {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid $color-grey-text;
+      border-bottom: 2px solid $color-grey-text;
+      transform: rotate(-45deg);
+      transition: transform 200ms ease-in-out;
+      flex-shrink: 0;
+      opacity: 0.4;
 
-  &__toggle-text {
-    flex: 1;
+      &--expanded {
+        transform: rotate(45deg);
+      }
+    }
+
+    &__text {
+      flex: 1;
+    }
   }
 
   &__content {
     padding: 1.5rem;
-    background-color: $color-parchment;
+    background-color: transparent;
     transition: all 0.3s ease-in-out;
 
     @media (prefers-reduced-motion: reduce) {
@@ -79,5 +91,29 @@
 
   .field-group-content {
     display: block;
+  }
+
+  &.active {
+    .field-group {
+      &__toggle {
+        background: rgba($color-parchment, 0.5);
+        border: 0;
+
+        &__icon {
+          transform: rotate(45deg);
+          opacity: 1;
+          border-right: 2px solid $color-oxblood;
+          border-bottom: 2px solid $color-oxblood;
+        }
+
+        &__text {
+          color: $color-oxblood;
+        }
+      }
+
+      &__content {
+        background: rgba($color-parchment, 0.5);
+      }
+    }
   }
 }
