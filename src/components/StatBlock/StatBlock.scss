@@ -1,5 +1,5 @@
 .stat-block {
-  background: #fdf1dc;
+  position: relative;
   border: 2px solid #922610;
   border-radius: 8px;
   padding: 20px;
@@ -8,6 +8,19 @@
   max-width: 400px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   line-height: 1.4;
+
+  // Background image with opacity
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../../assets/wooden-floor-background.jpg') no-repeat center center / cover;
+    opacity: 0.7;
+    z-index: -1;
+  }
 
   // Header
   .stat-block-header {
@@ -21,6 +34,7 @@
       color: #922610;
       text-transform: uppercase;
       letter-spacing: 1px;
+      font-family: $font-preview-heading;
     }
 
     .creature-tag {
