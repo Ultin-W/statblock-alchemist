@@ -19,7 +19,7 @@ const FieldGroup = ({ title, children, defaultExpanded = false }) => {
   const sectionId = `section-${generateSafeId(title)}`;
 
   return (
-    <fieldset className="field-group">
+    <fieldset className={`field-group ${expanded ? 'active' : ''}`}>
       <legend className="field-group__legend">
         <button
           type="button"
